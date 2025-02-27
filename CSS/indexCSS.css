@@ -281,6 +281,26 @@
             display: block;
         }
 
+        .paperEntry a{
+            text-decoration: none;
+        }
+
+        .expEntry a{
+            text-decoration: none;
+        }
+
+        .jamEntry a{
+            text-decoration: none;
+        }
+
+        .certEntry a{
+            text-decoration: none;
+        }
+
+        .eduEntry a{
+            text-decoration: none;
+        }
+
         .eduEntry{
             flex: 1 1 30%;
             padding: 10px;
