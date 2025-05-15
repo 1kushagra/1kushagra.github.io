@@ -2,11 +2,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REVV</title>
+    <title>AGDS Freshers Jam</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="icon" href="../Favicons/revv-favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../Favicons/agdsLogo.ico" type="image/x-icon">
 
     <style>
         body {
@@ -41,6 +41,10 @@
             transform: scale(1.1);
         }
 
+        .itch-button:hover{
+            transform: scale(1.1);
+        }
+
         .project-description {
             font-size: 16px;
             text-align: center; /* Center-align the project description */
@@ -52,6 +56,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .itchContainer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .itch-button {
+            left: 47.2%;
+            position: fixed;
+            bottom: 80px; /* Set the bottom position with margin */
+            display: block;
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.3s;
         }
 
         .repository-button {
@@ -109,6 +134,11 @@
                 left: 50%;
             }
 
+            .itch-button{
+                left: 50%;
+                bottom: 70px;
+            }
+
             .repository-button:active,
             .home-button:active{
                 transform: scale(1.1);
@@ -118,36 +148,49 @@
     </style>
 </head>
 <body>
-    <a href="../index.html#projects" class="home-button">Home</a>
-    <div class="project-name">REVV Car Simulation</div>
+    <a href="../index.html#jams" class="home-button">Home</a>
+    <div class="project-name">Scottish Widows Game Jam by Lloyds Banking Group <br><span style="font-weight: 600; color: rgb(104, 104, 104); text-decoration: underline;">Created Game: Bear with Me</span></div>
     <div class="project-description">
-        <div style="font-weight: bold;">[ Unfinished ]<br></div>
-        A Car Simulation Game.
+        A 2 day jam to build a game related to given social briefs.
     </div>
 
     <div class="video-container">
         <!-- Replace the src attribute with your YouTube video link -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/N3mymQEdipw?si=QLBiycHqboNM336l?vq=hd1080" frameborder="0" allowfullscreen></iframe>
+        <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/xK4HzFgfU4M?si=797HLRSDI-8jN6x1?vq=hd1080" frameborder="0" allowfullscreen></iframe> -->
+         <p style="font-size:40px;">Video Coming Soon</p>
     </div>
 
     <div class="project-description">
         <!-- Add your project description here -->
         <div style="font-weight: bold; font-size: 20px;">Key Points</div>
         <br>
-        It is a car simulation game containing various types of cars, the model or art for the whole game is imported from the Unity asset store.
+        The game jam was organised at V&A Dundee.
         <br><br>
-        The vehicle behaviour and controls are developed in-house. To mimic the suspensions, the wheel collider component from Unity Engine is used and the car is driven using the torque property of the same component.
+        Climate-Themed Survival Mechanic: Players embody a polar bear whose survival is challenged by shrinking ice caps, drawing attention to environmental degradation.
         <br><br>
-        The system is designed in such a way that the car rarely tumbles over, even at high speeds. To ensure this there is the facility of downforce based on the speed of the car and the centre of mass is also changed to facilitate the stability.<br><br>
-        The wheel friction curve is adjusted to best mimic real-world terrains and is also changed based on the type of ground. For example, Mud and Tarmac have different curve values.
+        Progressive Difficulty Through Resource Decay: Ice cap spawn probability dynamically decreases as the score increases, mimicking real-world climate impact over time.
         <br><br>
-        The player camera is a Freelook Cinemachine camera with focus and follows the vehicle with the functionality of returning to its initial position or heading after a certain amount of idle time.
+        Dual Input Support: Fully playable via both keyboard and game controller (e.g., Xbox), with seamless trigger and button mapping.
+        <br><br>
+        Alternating Movement Input: Swimming is controlled by alternating left and right arrow keys (or controller triggers), adding physical rhythm to movement.
+        <br><br>
+        Rhythm-Based Fishing Mechanic: Fishing minigame requires players to input randomised arrow/D-pad sequences, simulating focus and dexterity.
+        <br><br>
+        Score Based on Survival and Fishing: Points are accumulated both passively over time and actively through successful fishing, encouraging both exploration and timing.
+        <br><br>
+        Leaderboard System: Utilises Unity's leaderboard services, enabling players to compete globally for high scores and compare survival endurance.
+        <br><br>
+        Developed by a team of 4 with a dedicated producer, and a couple of artists and programmers.
         <br><br>
         <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
     </div>
     <br>
+    <div class="itchContainer">
+        <a href="https://agentkjh.itch.io/bear-with-me" class="itch-button" target="_blank">Itch Page</a>
+    </div>
+    <br>
     <div class="repoContainer">
-        <a href="https://github.com/KushagraYashu/REVV-revamp-Unity" class="repository-button" target="_blank">Repository Link</a>
+        <a href="https://github.com/profraxle/VnAJam" class="repository-button" target="_blank">Repository Link</a>
     </div>
     <br>
     <br>
