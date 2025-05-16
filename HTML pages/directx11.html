@@ -120,7 +120,7 @@
 </head>
 <body>
     <a href="../index.html#projects" class="home-button">Home</a>
-    <div class="project-name">Living Landscape: A Dynamic Terrain Simulation using DirectX11</div>
+    <div class="project-name">Living Landscape</div>
     <div class="project-description">
         <!-- <div style="font-weight: bold;">[ In Progress ]<br></div> -->
         A Real-Time rendering project using DirectX11.
@@ -130,24 +130,42 @@
         <!-- Replace the src attribute with your YouTube video link -->
         <iframe width="560" height="315" src="https://www.youtube.com/embed/xK4HzFgfU4M?si=797HLRSDI-8jN6x1?vq=hd1080" frameborder="0" allowfullscreen></iframe>
     </div>
+    <div class="project-description"style="font-style: italic;">
+        The video for the first part of the project, showcasing the height mapped and dynamically tessellated terrain, along with the day-night cycle.
+    </div>
+
+    <div class="video-container">
+        <!-- Replace the src attribute with your YouTube video link -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/11IzwhsLVKM?si=eR8gAxwnb_ppPB1K?vq=hd1080" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="project-description" style="font-style: italic;">
+        The video for the second part of the project, showcasing the perlin noise based height maps, along with realistic volumetric clouds and collision detection.
+        <br><br>
+    </div>
 
     <div class="project-description">
         <!-- Add your project description here -->
         <div style="font-weight: bold; font-size: 20px;">Key Points</div>
         <br>
-        It is a simulation showcasing a dynamic terrain influenced by height mapping and tessellation, integrated with a realistic day-night cycle.
+        It is a simulation showcasing a dynamic terrain influenced by perlin noise height map texture and tessellation, integrated with a realistic day-night cycle and volumetric clouds with collision detection.
         <br><br>
-        Dynamic Terrain and Tessellation: A height map manipulates a plane mesh that is dynamically tessellated for enhanced detail; Normals are correctly calculated using the height map for accurate lighting.
+        Dynamic Terrain and Tessellation: A perlin noise height map manipulates a plane mesh that is dynamically tessellated for enhanced detail; Normals are correctly calculated using the height map for accurate lighting.
+        <br><br>
+        Volumetric Clouds: Clouds are generated using a 3D texture with a perlin noise function, creating a realistic cloud formation; The clouds are rendered with alpha blending and depth testing for accurate layering. They adhere to the laws of physics and fluid mechanics, allowing for realistic movement and interaction with the environment.
+        <br><br>
+        Collision Detection: Implemented by comparing height values between objects and height maps, allowing for accurate object placement and interaction.
+        <br><br>
+        Flexible Terrain Shading: The terrain can be shaded with three different materials based on the height map and user provided values, allowing for a variety of visual styles.
         <br><br>
         Post-Processing: Color grading for scene-wide adjustments in brightness, contrast, and saturation; Bloom with multiple passes, applied to both the sun and the scene for a radiant effect.
         <br><br>
-        Additional Visual Features: Moving Clouds, Bitmap Clouds that move based on time; Sky Dome, A Sky Dome sphere rendered without the depth buffer to create the illusion of a distant skybox.
+        Additional Visual Features: Sky Dome, A Sky Dome sphere rendered without the depth buffer to create the illusion of a distant skybox. A day-night cycle with a sun, where the sun's position is calculated based on the time of day, affecting the scene's lighting and color grading.
         <br><br>
         <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
     </div>
     <br>
     <div class="repoContainer">
-        <a href="https://github.com/KushagraYashu/Living-Landscape-DirectX11" class="repository-button" target="_blank">Repository Link</a>
+        <a href="https://github.com/KushagraYashu/Living-Lanscape-PCG-DirectX11" class="repository-button" target="_blank">Repository Link</a>
     </div>
     <br>
     <br>
