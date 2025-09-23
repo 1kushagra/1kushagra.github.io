@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Synthetic Player Simulator for Comparing Matchmaking Systems</title>
@@ -20,7 +21,7 @@
             text-align: center;
             font-size: 36px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 60px;
         }
 
         .video-container {
@@ -37,28 +38,30 @@
             transform: scale(1.1);
         }
 
-        .repository-button:hover{
+        .repository-button:hover {
             transform: scale(1.1);
         }
 
-        .itch-button:hover{
+        .itch-button:hover {
             transform: scale(1.1);
         }
 
         .project-description {
             font-size: 16px;
-            text-align: center; /* Center-align the project description */
-            margin: 20px auto; /* Center the description box and decrease its width */
+            text-align: center;
+            /* Center-align the project description */
+            margin: 20px auto;
+            /* Center the description box and decrease its width */
             max-width: 1000px;
         }
 
-        .repoContainer{
+        .repoContainer {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .itchContainer{
+        .itchContainer {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -67,7 +70,8 @@
         .itch-button {
             left: 46.7%;
             position: fixed;
-            bottom: 80px; /* Set the bottom position with margin */
+            bottom: 80px;
+            /* Set the bottom position with margin */
             display: block;
             background-color: black;
             color: white;
@@ -81,7 +85,8 @@
 
         .repository-button {
             position: fixed;
-            bottom: 20px; /* Set the bottom position with margin */
+            bottom: 20px;
+            /* Set the bottom position with margin */
             display: block;
             background-color: black;
             color: white;
@@ -96,7 +101,8 @@
         .home-button {
             position: fixed;
             top: 20px;
-            left: 20px; /* Add left margin to the Home button */
+            left: 20px;
+            /* Add left margin to the Home button */
             background-color: black;
             color: white;
             padding: 10px 20px;
@@ -105,77 +111,186 @@
             border: none;
             border-radius: 5px;
             transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        details {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        summary {
+            background-color: #000;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            /* removes default triangle */
+            position: relative;
+        }
+
+        summary::after {
+            content: "▶";
+            /* custom arrow */
+            position: absolute;
+            left: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        details[open] summary::after {
+            transform: rotate(90deg);
+            /* rotate arrow when open */
+        }
+
+        details p,
+        details div {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+        code {
+            display: block;
+            text-align: left;
+            white-space: pre-wrap;
+            background-color: #e8e8e8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: monospace;
         }
 
         @media only screen and (max-width: 810px) {
+
             /* Media query for screens up to 600px wide (typically smartphones) */
             .project-name {
-                margin-top: 75px;;
-                font-size: 24px; /* Decrease font size for smaller screens */
+                margin-top: 75px;
+                ;
+                font-size: 24px;
+                /* Decrease font size for smaller screens */
             }
 
             .video-container iframe {
-                height: 250px; /* Decrease video height for smaller screens */
+                height: 250px;
+                /* Decrease video height for smaller screens */
             }
 
             .project-description {
-                font-size: 14px; /* Decrease font size for smaller screens */
-                margin: 10px auto; /* Adjust margin for smaller screens */
-                max-width: 80%; /* Decrease max-width for smaller screens */
+                font-size: 14px;
+                /* Decrease font size for smaller screens */
+                margin: 10px auto;
+                /* Adjust margin for smaller screens */
+                max-width: 80%;
+                /* Decrease max-width for smaller screens */
             }
 
             .repository-button,
             .home-button {
-                left: 10px; /* Adjust left position for mobile */
-                font-size: 15px; /* Decrease font size for smaller screens */
+                left: 10px;
+                /* Adjust left position for mobile */
+                font-size: 15px;
+                /* Decrease font size for smaller screens */
                 padding: 10px;
             }
 
-            .repository-button{
+            .repository-button {
                 left: 50%;
             }
 
-            .itch-button{
+            .itch-button {
                 left: 50%;
                 bottom: 70px;
             }
 
             .repository-button:active,
-            .home-button:active{
+            .home-button:active {
                 transform: scale(1.1);
             }
         }
-
     </style>
 </head>
+
 <body>
     <a href="../index.html#projects" class="home-button">Home</a>
     <div class="project-name">Synthetic Player Simulator for Comparing Matchmaking Systems</div>
     <div class="project-description">
-        A simulation framework modelling 10,000 players to benchmark matchmaking algorithms. 
+        A simulation framework modelling 10,000 players to benchmark matchmaking algorithms.
     </div>
 
     <div class="video-container">
         <!-- Replace the src attribute with your YouTube video link -->
         <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/xK4HzFgfU4M?si=797HLRSDI-8jN6x1?vq=hd1080" frameborder="0" allowfullscreen></iframe> -->
-         <p style="font-size:40px;">Video Coming Soon</p>
+        <p style="font-size:40px;">Video Coming Soon</p>
     </div>
+
+
 
     <div class="project-description">
         <!-- Add your project description here -->
-        <div style="font-weight: bold; font-size: 20px;">Key Points</div>
+        <div style="font-style: italic; font-weight: lighter;"> The project information is divided into the following sections.</div>
         <br>
-        Developed a scalable Unity C# simulation framework capable of modelling 10,000 synthetic players with fixed real-skill distributions, allowing reproducible large-scale benchmarking of matchmaking systems.
-        <br><br>
-        Implemented and extended multiple rating algorithms (Elo, Glicko, TrueSkill) and designed SmartMatch, a novel system incorporating player performance metrics and loss-streak mitigation for engagement-driven matchmaking.
-        <br><br>
-        Modelled realistic multiplayer dynamics and player behaviours, including smurfing, probabilistic duels, assists, and clutch scenarios, to capture both win/loss outcomes and granular player performance statistics for evaluation.
-        <br><br>
-        Designed modular, extensible architecture with dedicated managers for UI, simulation control, players, and matchmaking logic, ensuring flexibility for testing different systems under identical conditions.
-        <br><br>
-        Conducted comparative analysis of fairness, rating convergence, smurf detection, and player experience across algorithms, producing data-driven insights into the trade-offs between accuracy, engagement, and progression.
-        <br><br>
-        <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
+        <details>
+            <summary>What is it?</summary>
+            <p>
+                A scalable Unity C# simulation framework capable of modelling 10,000 synthetic players with fixed real-skill distributions, realistic multiplayer dynamics (probabilistic duels, assists, clutches) and player behaviours (smurfing).
+                <br><br>
+                It allows reproducible large-scale benchmarking of different matchmaking systems.
+                <br><br>
+                I have implemented the entirety of the project, using Unity Engine, C#, and Python for data analysis and visualisation.
+            </p>
+        </details>
+        <details>
+            <summary>Motivation</summary>
+            <p>
+                This project is the final MSc coursework project, motivated by the lack of matchmaking algorithm benchmarking softwares.
+                <br><br>
+                The project implements and assesses multiple matchmaking algorithms (Elo, Glicko, TrueSkill, a custom SmartMatch System) in a repeatable manner, providing data-driven insights into their trade-offs.
+            </p>
+        </details>
+        <details>
+            <summary>Work Done</summary>
+            <p>
+                Implemented synthetic player behaviour, realistic match simulation, and the matchmaking algorithms (Elo, Glicko, TrueSkill, and a novel SmartMatch).
+                <br><br>
+                Performed comparative analysis of fairness, rating convergence, smurf detection, and player experience across algorithms, producing data-driven insights using Python.
+                <br><br>
+                Created methods for results visualisation and reporting, including graphs and statistical summaries.
+                <br><br>
+                Managed UI and UX for the simulation control and data presentation.
+                <br><br>
+                Created a robust and extensible software capable of simulating various matchmaking systems under identical conditions, resulting into reproducible and verifiable results.
+                <br><br>
+                <span style="font-style: italic; font-weight: bold;"> Code Example: </span> The coroutine (<span style="font-family: monospace;">SimulateMatch</span>) simulates a competitive match between two teams, round by round, using an Elo-based probability model for engagements. It also updates per-player statistics such as kills, assists, clutches, and adjusts Elo ratings at the end of the match.
+                <code>
+double p1WinProb = 1.0 / (1.0 + Math.Pow(10, (p2.playerData.RealSkill - p1.playerData.RealSkill) / 400.0));
+bool p1Wins = rng.NextDouble() < p1WinProb;
+
+if (p1Wins)
+{
+    p1.playerData.Kills++;
+    p2.playerData.Deaths++;
+    aliveTeam2.Remove(p2);
+}
+else
+{
+    p2.playerData.Kills++;
+    p1.playerData.Deaths++;
+    aliveTeam1.Remove(p1);
+}
+<a href="https://github.com/KushagraYashu/MSc-Project/blob/3df40edf3b92307dfc191e62e38261f46f60da48/Assets/Scripts/Matchmaking%20Systems/SmartMatchSystemManager.cs#L584"  target="_blank">Full Method (GitHub)</a>
+                </code>
+                This snippet shows how each duel outcome is probabilistically determined based on player skill ratings. Over many rounds, this produces realistic match results and allows for post-game Elo adjustments.
+            </p>
+        </details>
+        <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
     <br>
     <div class="repoContainer">
@@ -185,4 +300,5 @@
     <br>
     <br>
 </body>
+
 </html>
