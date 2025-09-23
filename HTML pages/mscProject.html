@@ -114,7 +114,7 @@
             z-index: 1000;
         }
 
-        details {
+        .project-description details {
             max-width: 100%;
             margin-left: auto;
             margin-right: auto;
@@ -125,7 +125,7 @@
             overflow: hidden;
         }
 
-        summary {
+        .project-description details summary {
             background-color: #000;
             color: white;
             padding: 12px 16px;
@@ -136,7 +136,7 @@
             position: relative;
         }
 
-        summary::after {
+        .project-description details summary::after {
             content: "▶";
             /* custom arrow */
             position: absolute;
@@ -144,12 +144,12 @@
             transition: transform 0.2s ease;
         }
 
-        details[open] summary::after {
+        .project-description details[open] summary::after {
             transform: rotate(90deg);
             /* rotate arrow when open */
         }
 
-        details p,
+        .project-description details p,
         details div {
             background: #f5f5f5;
             padding: 12px 16px;
@@ -157,14 +157,70 @@
             color: #333;
             line-height: 1.5;
         }
+
+        .project-description .photos details summary {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 16px 12px 36px;
+            /* left padding for icon */
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset inherited arrow style */
+        .project-description .photos details summary::after {
+            all: unset;
+            content: "📷";
+            /* camera icon */
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .project-description .photos details img {
+            margin: 10px auto;
+            border-radius: 6px;
+            display: block;
+            max-width: 90%;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* --- Code section redesign --- */
+        .project-description .code details summary {
+            background-color: #000;
+            color: #fff;
+            /* terminal green */
+            padding: 12px 16px 12px 36px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset arrow again */
+        .project-description .code details summary::after {
+            all: unset;
+            content: "🛠️";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
         code {
             display: block;
             text-align: left;
+            background-color: #cfcfcf;
             white-space: pre-wrap;
-            background-color: #e8e8e8;
             padding: 10px;
             border-radius: 5px;
-            font-family: monospace;
         }
 
         @media only screen and (max-width: 810px) {
@@ -266,38 +322,44 @@
                 • Managed UI and UX for the simulation control and data presentation.
                 <br>
                 • Created a robust and extensible software capable of simulating various matchmaking systems under identical conditions, resulting into reproducible and verifiable results.
-                <br><br>
-                <span style="font-style: italic; font-weight: bold;"> Code Example: </span> The coroutine (<span style="font-family: monospace;">SimulateMatch</span>) simulates a competitive match between two teams, round by round, using an Elo-based probability model for engagements. It also updates per-player statistics such as kills, assists, clutches, and adjusts Elo ratings at the end of the match.
-                <code>
-double p1WinProb = 1.0 / (1.0 + Math.Pow(10, (p2.playerData.RealSkill - p1.playerData.RealSkill) / 400.0));
-bool p1Wins = rng.NextDouble() < p1WinProb;
-
-if (p1Wins)
-{
-    p1.playerData.Kills++;
-    p2.playerData.Deaths++;
-    aliveTeam2.Remove(p2);
-}
-else
-{
-    p2.playerData.Kills++;
-    p1.playerData.Deaths++;
-    aliveTeam1.Remove(p1);
-}
-<a href="https://github.com/KushagraYashu/MSc-Project/blob/3df40edf3b92307dfc191e62e38261f46f60da48/Assets/Scripts/Matchmaking%20Systems/SmartMatchSystemManager.cs#L584"  target="_blank">Full Method (GitHub)</a>
-                </code>
-                This snippet shows how each duel outcome is probabilistically determined based on player skill ratings. Over many rounds, this produces realistic match results and allows for post-game Elo adjustments.
-                <br><br>
-                <span style="font-style: italic; font-weight: bold; display: block; text-align: left;"> Photos: </span>
-                Main Screen:
-                <img src="../Pics/MScProjectPics/mainScreen.png" style="max-width: 100%;">
-                Simulation Screen:
-                <img src="../Pics/MScProjectPics/simScreen.png" style="max-width: 100%;">
-                Exported CSV Data:
-                <img src="../Pics/MScProjectPics/CSV.png" style="max-width: 100%;">
-                Verifications for Matchmaking Systems:
-                <img src="../Pics/MScProjectPics/setVerifications.png" style="max-width: 100%;">
             </p>
+            <div class="code">
+                <details>
+                    <summary>Code Example</summary>
+                    <span style="display: block; text-align: left; margin: 5px;">The coroutine (<span style="font-family: monospace;">SimulateMatch</span>) simulates a competitive match between two teams, round by round, using an Elo-based probability model for engagements. It also updates per-player statistics such as kills, assists, clutches, and adjusts Elo ratings at the end of the match.</span>
+                        <code>
+double p1WinProb = 1.0 / (1.0 + Math.Pow(10, (p2.playerData.RealSkill - p1.playerData.RealSkill) / 400.0));
+bool p1Wins = rng.NextDouble() < p1WinProb; 
+if (p1Wins) 
+{ 
+    p1.playerData.Kills++; 
+    p2.playerData.Deaths++; 
+    aliveTeam2.Remove(p2); 
+} 
+else 
+{ 
+    p2.playerData.Kills++; 
+    p1.playerData.Deaths++; 
+    aliveTeam1.Remove(p1); 
+} 
+<a href="https://github.com/KushagraYashu/MSc-Project/blob/3df40edf3b92307dfc191e62e38261f46f60da48/Assets/Scripts/Matchmaking%20Systems/SmartMatchSystemManager.cs#L584" target="_blank">Full Method (GitHub)</a>
+                        </code>
+                    This snippet shows how each duel outcome is probabilistically determined based on player skill ratings. Over many rounds, this produces realistic match results and allows for post-game Elo adjustments.
+                </details>
+            </div>
+            <div class="photos">
+                <details>
+                    <summary>Photos</summary>
+                    Main Screen:
+                    <img src="../Pics/MScProjectPics/mainScreen.png" style="max-width: 100%;">
+                    Simulation Screen:
+                    <img src="../Pics/MScProjectPics/simScreen.png" style="max-width: 100%;">
+                    Exported CSV Data:
+                    <img src="../Pics/MScProjectPics/CSV.png" style="max-width: 100%;">
+                    Verifications for Matchmaking Systems:
+                    <img src="../Pics/MScProjectPics/setVerifications.png" style="max-width: 100%;">
+                </details>
+            </div>
         </details>
         <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
