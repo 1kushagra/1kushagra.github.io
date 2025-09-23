@@ -164,7 +164,6 @@
             background-color: #e8e8e8;
             padding: 10px;
             border-radius: 5px;
-            margin-top: 10px;
             font-family: monospace;
         }
 
@@ -239,34 +238,34 @@
         <br>
         <details>
             <summary>What is it?</summary>
-            <p>
-                A scalable Unity C# simulation framework capable of modelling 10,000 synthetic players with fixed real-skill distributions, realistic multiplayer dynamics (probabilistic duels, assists, clutches) and player behaviours (smurfing).
-                <br><br>
-                It allows reproducible large-scale benchmarking of different matchmaking systems.
-                <br><br>
-                I have implemented the entirety of the project, using Unity Engine, C#, and Python for data analysis and visualisation.
+            <p style="display: block; text-align: left;">
+                • A scalable Unity C# simulation framework capable of modelling 10,000 synthetic players with fixed real-skill distributions, realistic multiplayer dynamics (probabilistic duels, assists, clutches) and player behaviours (smurfing).
+                <br>
+                • It allows reproducible large-scale benchmarking of different matchmaking systems.
+                <br>
+                • I have implemented the entirety of the project, using Unity Engine, C#, and Python for data analysis and visualisation.
             </p>
         </details>
         <details>
             <summary>Motivation</summary>
-            <p>
-                This project is the final MSc coursework project, motivated by the lack of matchmaking algorithm benchmarking softwares.
-                <br><br>
-                The project implements and assesses multiple matchmaking algorithms (Elo, Glicko, TrueSkill, a custom SmartMatch System) in a repeatable manner, providing data-driven insights into their trade-offs.
+            <p style="display: block; text-align: left;">
+                • This project is the final MSc coursework project, motivated by the lack of matchmaking algorithm benchmarking softwares.
+                <br>
+                • The project implements and assesses multiple matchmaking algorithms (Elo, Glicko, TrueSkill, a custom SmartMatch System) in a repeatable manner, providing data-driven insights into their trade-offs.
             </p>
         </details>
         <details>
             <summary>Work Done</summary>
-            <p>
-                Implemented synthetic player behaviour, realistic match simulation, and the matchmaking algorithms (Elo, Glicko, TrueSkill, and a novel SmartMatch).
-                <br><br>
-                Performed comparative analysis of fairness, rating convergence, smurf detection, and player experience across algorithms, producing data-driven insights using Python.
-                <br><br>
-                Created methods for results visualisation and reporting, including graphs and statistical summaries.
-                <br><br>
-                Managed UI and UX for the simulation control and data presentation.
-                <br><br>
-                Created a robust and extensible software capable of simulating various matchmaking systems under identical conditions, resulting into reproducible and verifiable results.
+            <p style="display: block; text-align: left;">
+                • Implemented synthetic player behaviour, realistic match simulation, and the matchmaking algorithms (Elo, Glicko, TrueSkill, and a novel SmartMatch).
+                <br>
+                • Performed comparative analysis of fairness, rating convergence, smurf detection, and player experience across algorithms, producing data-driven insights using Python.
+                <br>
+                • Created methods for results visualisation and reporting, including graphs and statistical summaries.
+                <br>
+                • Managed UI and UX for the simulation control and data presentation.
+                <br>
+                • Created a robust and extensible software capable of simulating various matchmaking systems under identical conditions, resulting into reproducible and verifiable results.
                 <br><br>
                 <span style="font-style: italic; font-weight: bold;"> Code Example: </span> The coroutine (<span style="font-family: monospace;">SimulateMatch</span>) simulates a competitive match between two teams, round by round, using an Elo-based probability model for engagements. It also updates per-player statistics such as kills, assists, clutches, and adjusts Elo ratings at the end of the match.
                 <code>
@@ -288,6 +287,16 @@ else
 <a href="https://github.com/KushagraYashu/MSc-Project/blob/3df40edf3b92307dfc191e62e38261f46f60da48/Assets/Scripts/Matchmaking%20Systems/SmartMatchSystemManager.cs#L584"  target="_blank">Full Method (GitHub)</a>
                 </code>
                 This snippet shows how each duel outcome is probabilistically determined based on player skill ratings. Over many rounds, this produces realistic match results and allows for post-game Elo adjustments.
+                <br><br>
+                <span style="font-style: italic; font-weight: bold; display: block; text-align: left;"> Photos: </span>
+                Main Screen:
+                <img src="../Pics/MScProjectPics/mainScreen.png" style="max-width: 100%;">
+                Simulation Screen:
+                <img src="../Pics/MScProjectPics/simScreen.png" style="max-width: 100%;">
+                Exported CSV Data:
+                <img src="../Pics/MScProjectPics/CSV.png" style="max-width: 100%;">
+                Verifications for Matchmaking Systems:
+                <img src="../Pics/MScProjectPics/setVerifications.png" style="max-width: 100%;">
             </p>
         </details>
         <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
