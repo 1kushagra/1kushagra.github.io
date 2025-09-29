@@ -19,7 +19,7 @@
         .project-name {
             font-size: 36px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 60px;
         }
 
         .video-container {
@@ -79,6 +79,124 @@
             border: none;
             border-radius: 5px;
             transition: transform 0.3s;
+            z-index: 1000; /* Ensure the button is above other content */
+        }
+
+        .project-description details {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .project-description details summary {
+            background-color: #000;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            /* removes default triangle */
+            position: relative;
+        }
+
+        .project-description details summary::after {
+            content: "▶";
+            /* custom arrow */
+            position: absolute;
+            left: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .project-description details[open] summary::after {
+            transform: rotate(90deg);
+            /* rotate arrow when open */
+        }
+
+        .project-description details p,
+        details div {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .project-description .photos details summary {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 16px 12px 36px;
+            /* left padding for icon */
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset inherited arrow style */
+        .project-description .photos details summary::after {
+            all: unset;
+            content: "📷";
+            /* camera icon */
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .project-description .photos details img {
+            margin: 10px auto;
+            border-radius: 6px;
+            display: block;
+            max-width: 90%;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* --- Code section redesign --- */
+        .project-description .code details summary {
+            background-color: #000;
+            color: #fff;
+            /* terminal green */
+            padding: 12px 16px 12px 36px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset arrow again */
+        .project-description .code details summary::after {
+            all: unset;
+            content: "🛠️";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        code {
+            display: block;
+            text-align: left;
+            background-color: #cfcfcf;
+            white-space: pre-wrap;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .blueprint-iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 6px;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         @media only screen and (max-width: 810px) {
@@ -131,27 +249,76 @@
 
     <div class="project-description">
         <!-- Add your project description here -->
-        <div style="font-weight: bold; font-size: 20px;">Key Points</div>
+        <div style="font-style: italic; font-weight: lighter;"> The project information is divided into the following sections.</div>
         <br>
-        This is the Unreal Engine version of the Gunner FPS game.
-        <br><br>
-        Gunner is a First Person Shooter game based on the training range mode of the famous FPS game called VALORANT. It is implementing some basic features of that game.
-        <br><br>
-        It uses Unreal Engine's Blueprints as the main programming mechanism.
-        <br><br>
-        It features 6 different weapons such as assault rifles, sniper rifles, and Glock. The player can choose from these options via a "Buy Menu" and then can proceed to play any mode he wishes using the selected weapon.
-        <br><br>
-        The weapon models are sourced from the Internet but the Player Controller, Gun Behaviour, and Animations are developed in-house. 
-        <br><br>
-        This version of Gunner also includes mechanical recoil, which was missing in the Unity version. The recoil is implemented using a combination of camera shake and weapon movement, simulating the effect of firing a weapon in a realistic manner.
-        <br><br>
-        It also includes a more realistic implementation of sounds. The effects are sourced from the Internet but are implemented with pitch, volume, and distance adjustments to create a more immersive experience. The sound effects include gunfire, reloading, and ambient sounds.
-        <br><br>
-        The Game also features training modes such as target training, Free Bot Shoot training, and Timed Bot Shoot training. All are derived from the "Range" mode of VALORANT.
-        <br><br>
-        The First-person camera controller is made in-house. The player movement is derived from the Character class provided by the Unreal Engine. It is also used to implement more features such as Jump.
-        <br><br>
-        <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
+        <details>
+            <summary>What is it?</summary>
+            <p style="display: block; text-align: left;">
+                • A first-person shooter game based on the training range mode of the famous FPS game Valorant.
+                <br>
+                • It features aim practice, timed bot shooting practice, and a weapons helper system.
+                <br>
+                • I have implemented the entirety of the project, using the Unreal Engine 5 and Blueprints as coding and logic building medium.
+            </p>
+        </details>
+        <details>
+            <summary>Motivation</summary>
+            <p style="display: block; text-align: left;">
+                • The main motivation behind this project is learning. I wanted to learn how to use the Unreal Engine and its Blueprints system. I wanted to implement and understand the mechanics of a first-person shooter game in the said engine.
+                <br>
+                • The project implements multiple practice modes, as mentioned in the earlier section. It also has realistic weapon behaviour (recoil, sound effects, animations, etc.), player movement, and UI/UX.
+            </p>
+        </details>
+        <details>
+            <summary>Work Done</summary>
+            <p style="display: block; text-align: left;">
+                • Implemented the training modes, shooting mechanics with mechanical recoil (which was missing in the Unity version), and an FPS camera system.
+                <br>
+                • Programmed weapon animations for reloading using Unreal timelines. Also created post processing effects for visual enhancements.
+                <br>
+                • Created a sound system with 3D sounds to enhance the user experience.
+                <br>
+                • Implemented VFX using Unreal's Niagara system to create muzzle flashes, hit effects, and other visual enhancements.
+                <br>
+                • Built the UI/UX using Unreal UI widgets.
+            </p>
+            <div class="code">
+                <details>
+                    <summary>Code (Blueprint) Example</summary>
+                    <span style="display: block; text-align: left; margin: 5px;">The following blueprint method is responsible for firing a shotgun bullet <em>(multiple pellets in different directions)</em>. it works by generating a cone from the muzzle, sampling 8 pellet directions inside that cone, then firing each pellet (line trace) to apply damage and visual effects.</span>
+                    <details style="max-width: 85%;">
+                        <summary>
+                            Interactive Blueprint (blueprintUE iframe)
+                        </summary>
+                        <iframe class="blueprint-iframe" src="https://blueprintue.com/render/djzn-ds7/" scrolling="no" allowfullscreen></iframe>
+                    </details>
+                    <span style="display: block; text-align: left; margin: 5px;">The above <a target="_blank" href="https://blueprintue.com/">blueprintUE</a> iframe might not get displayed properly due to certain restrictions, please <a target="_blank" href="../Pics/Gunner 2/Pump Action Shotgun Pellet Shooting blueprint.png">visit here</a> for a static photograph of it.</span>
+                </details>
+            </div>
+            <div class="photos">
+                <details>
+                    <summary>Photos</summary>
+                    Main Menu:
+                    <img src="../Pics/Gunner 2/mainMenu.png" style="max-width: 100%;">
+                    Pause and Settings:
+                    <img src="../Pics/Gunner 2/pauseMenu.png" style="max-width: 100%;">
+                    <img src="../Pics/Gunner 2/settings.png" style="max-width: 100%;">
+                    Scenery:
+                    <img src="../Pics/Gunner 2/scene.png" style="max-width: 100%;">
+                    Shotgun Pellet Spread:
+                    <img src="../Pics/Gunner 2/shotgunSpread.png" style="max-width: 100%;">
+                    Bot Practice:
+                    <img src="../Pics/Gunner 2/botPractice.png" style="max-width: 100%;">
+                    Weapons Helper Bot:
+                    <img src="../Pics/Gunner 2/weaponHelper.png" style="max-width: 100%;">
+                    Aim Practice:
+                    <img src="../Pics/Gunner 2/aimPractice.png" style="max-width: 100%;">
+                    Hit Effects:
+                    <img src="../Pics/Gunner 2/botBlood.png" style="max-width: 100%;">
+                </details>
+            </div>
+        </details>
+        <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
     <br>
     <!-- <div class="repoContainer">

@@ -20,7 +20,7 @@
             text-align: center;
             font-size: 36px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 60px;
         }
 
         .video-container {
@@ -105,6 +105,116 @@
             border: none;
             border-radius: 5px;
             transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .project-description details {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .project-description details summary {
+            background-color: #000;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            /* removes default triangle */
+            position: relative;
+        }
+
+        .project-description details summary::after {
+            content: "▶";
+            /* custom arrow */
+            position: absolute;
+            left: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .project-description details[open] summary::after {
+            transform: rotate(90deg);
+            /* rotate arrow when open */
+        }
+
+        .project-description details p,
+        details div {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .project-description .photos details summary {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 16px 12px 36px;
+            /* left padding for icon */
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset inherited arrow style */
+        .project-description .photos details summary::after {
+            all: unset;
+            content: "📷";
+            /* camera icon */
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .project-description .photos details img {
+            margin: 10px auto;
+            border-radius: 6px;
+            display: block;
+            max-width: 90%;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* --- Code section redesign --- */
+        .project-description .code details summary {
+            background-color: #000;
+            color: #fff;
+            /* terminal green */
+            padding: 12px 16px 12px 36px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset arrow again */
+        .project-description .code details summary::after {
+            all: unset;
+            content: "🛠️";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        code {
+            display: block;
+            text-align: left;
+            background-color: #cfcfcf;
+            white-space: pre-wrap;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         @media only screen and (max-width: 810px) {
@@ -163,19 +273,122 @@
 
     <div class="project-description">
         <!-- Add your project description here -->
-        <div style="font-weight: bold; font-size: 20px;">Key Points</div>
+        <div style="font-style: italic; font-weight: lighter;"> The project information is divided into the following sections.</div>
         <br>
-        Elevator-Based Combat: Engage in high-stakes, stationary combat within a confined elevator, relying on precise shooting to fend off relentless zombie threats.
-        <br><br>
-        Jump Scare-Driven Atmosphere: Experience a tension-filled environment with dynamic lighting and sound design that delivers unexpected jump scares throughout the encounter.
-        <br><br>
-        Immersive Visual Effects: Enhance gameplay with realistic overlays—such as steam and mud effects—implemented using sprites and sprite masks to simulate obstructed camera views.
-        <br><br>
-        Robust Technical Implementation & Collaboration: Developed in Unity with C# scripting, utilizing NavMesh for authentic zombie navigation, and refined through close collaboration with an artist, evolving from a game jam submission to a full release.
-        <br><br>
-        <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
+        <details>
+            <summary>What is it?</summary>
+            <p style="display: block; text-align: left;">
+                • A soon to be released horror survival shooter, where the player has to fight off floors full of zombies while being trapped in an elevator.
+                <br>
+                • It features multiple guns and power-ups to aid the player, as well as, a plethora of distractions and mini-games/tasks which prevent the player from concentrating on the oncoming gang of zombies.
+                <br>
+                • I have implemented the entire programming end of the project using Unity Engine and C#, with design and art being the responsibility of a colleague (Jeremy Varcl). We also teamed up with some game testers to ensure the game is polished and bug-free.
+            </p>
+        </details>
+        <details>
+            <summary>Motivation</summary>
+            <p style="display: block; text-align: left;">
+                • This project started as a game jam submission, but then quickly evolved into a release focused game as we (me and jeremy) liked the elevator-bound-survival game idea.
+                <br>
+                • It also serves the purpose of sharpening my team development and leadership skills, and it has also introduced me to the process of formally releasing a game.
+            </p>
+        </details>
+        <details>
+            <summary>Work Done</summary>
+            <p style="display: block; text-align: left;">
+                • Implemented player behaviour, movement, shooting, and environment interaction.
+                <br>
+                • Programmed audio, dialogue, and subtitles components and made sure they are properly in-sync with the gameplay.
+                <br>
+                • Created enemy AI, main game loop, player power-ups, abilities, distractions, and setup animations when needed.
+                <br>
+                • Designed and implemented VFX using Unity's particle systems.
+                <br>
+                • Programmed and designed the UI.
+                <br>
+                • Created a leaderboard system to track player scores and promote competition, using Unity's leaderboard services.
+                <br>
+                • Acted as a de-facto producer and team lead, managing the project timeline, tasks, and team communication.
+            </p>
+            <div class="code">
+                <details>
+                    <summary>Code Example</summary>
+                    <span style="display: block; text-align: left; margin: 5px;">The script (<span style="font-family: monospace;">CameraWipeOut.cs</span>) creates an interactive wiping effect on the camera overlay. As the player clicks and drags, sprite masks are instantiated where the   cursor hits, gradually "clearing" steam or any screen wide distractions. Once a threshold of cleared area is reached, the overlay is removed. This mechanic combines <em>raycasting</em>, <em>physics colliders</em>, and <em>procedural instantiation</em>.</span>
+                        <code>
+void Update()
+{
+    var mousePos = Input.mousePosition;
+    mousePos.z = Camera.main.nearClipPlane;
+    Ray ray = Camera.main.ScreenPointToRay(mousePos);
+    RaycastHit hit;
+
+    if (Input.GetKey(KeyCode.Mouse0))
+        isPressed = true;
+    else if (Input.GetKeyUp(KeyCode.Mouse0))
+        isPressed = false;
+
+    if (Physics.Raycast(ray, out hit) && isPressed)
+    {
+        if (hit.transform.CompareTag("CameraOverlay"))
+        {
+            var mask = Instantiate(spriteMaskPrefab, hit.point, Quaternion.identity);
+            mask.transform.SetParent(steam, true);
+            mask.transform.localPosition = new Vector3(mask.transform.localPosition.x, mask.transform.localPosition.y, -0.2f);
+            mask.transform.rotation = steam.rotation;
+
+            masks.Add(mask);
+
+            if (CheckCleared())
+            {
+                wiped = true;
+                foreach(var maskItem in masks)
+                {
+                    maskItem.GetComponent&lt;BoxCollider&gt;().enabled = false;
+                    Destroy(maskItem, 3);
+                }
+            }
+        }
+    }
+}
+
+bool CheckCleared()
+{
+    clearedArea = 0;
+    foreach (var mask in masks)
+    {
+        if (mask != null && mask.TryGetComponent&lt;BoxCollider&gt;(out var maskCollider))
+            clearedArea += maskCollider.bounds.size.x * maskCollider.bounds.size.y;
+    }
+
+    ratio = clearedArea / steamArea;
+    return ratio >= clearThreshold;
+}
+
+<a href="https://github.com/KushagraYashu/freshers-game-jam/blob/bd042dba650d0ea74f7f3bd86ed2ba84279ac858/Assets/Scripts/CameraWipeOut.cs" target="_blank">Full Script (GitHub)</a>
+                        </code>
+                </details>
+            </div>
+            <div class="photos">
+                <details>
+                    <summary>Photos</summary>
+                    Pumpkin Distraction:
+                    <img src="../Pics/WrongFloor/pumpkinDistraction.png" style="max-width: 100%;">
+                    Laser Gun Power-Up:
+                    <img src="../Pics/WrongFloor/laserGun.png" style="max-width: 100%;">
+                    Death Screen:
+                    <img src="../Pics/WrongFloor/deadScreen.png" style="max-width: 100%;">
+                    Train Station Level:
+                    <img src="../Pics/WrongFloor/railwayLevel.png" style="max-width: 100%;">
+                    Security Code Distraction:
+                    <img src="../Pics/WrongFloor/codeDistraction.png" style="max-width: 100%;">
+                    Leaderboard (with example data values):
+                    <img src="../Pics/WrongFloor/leaderboard.png" style="max-width: 100%;">
+                </details>
+            </div>
+        </details>
+        <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
-    <br>
+    <br> <br>
     <div class="itchContainer">
         <a href="https://store.steampowered.com/app/3539590/Wrong_Floor/" class="itch-button" target="_blank">Steam Page</a>
     </div>

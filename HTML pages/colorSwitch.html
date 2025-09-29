@@ -20,7 +20,7 @@
         .project-name {
             font-size: 36px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 60px;
         }
 
         .video-container {
@@ -81,6 +81,116 @@
             border: none;
             border-radius: 5px;
             transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .project-description details {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .project-description details summary {
+            background-color: #000;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            /* removes default triangle */
+            position: relative;
+        }
+
+        .project-description details summary::after {
+            content: "▶";
+            /* custom arrow */
+            position: absolute;
+            left: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .project-description details[open] summary::after {
+            transform: rotate(90deg);
+            /* rotate arrow when open */
+        }
+
+        .project-description details p,
+        details div {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .project-description .photos details summary {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 16px 12px 36px;
+            /* left padding for icon */
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset inherited arrow style */
+        .project-description .photos details summary::after {
+            all: unset;
+            content: "📷";
+            /* camera icon */
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .project-description .photos details img {
+            margin: 10px auto;
+            border-radius: 6px;
+            display: block;
+            max-width: 90%;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* --- Code section redesign --- */
+        .project-description .code details summary {
+            background-color: #000;
+            color: #fff;
+            /* terminal green */
+            padding: 12px 16px 12px 36px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset arrow again */
+        .project-description .code details summary::after {
+            all: unset;
+            content: "🛠️";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        code {
+            display: block;
+            text-align: left;
+            background-color: #cfcfcf;
+            white-space: pre-wrap;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         @media only screen and (max-width: 810px) {
@@ -123,33 +233,87 @@
     <div class="project-name">Color Switch</div>
     <div class="project-description">
         <!-- <div style="font-weight: bold;">[ In Progress ]<br></div> -->
-        Recreation of a famous Android Game.
+        Recreation of a famous mobile Game.
     </div>
 
     <div class="video-container">
         <!-- Replace the src attribute with your YouTube video link -->
         <iframe width="560" height="315" src="https://www.youtube.com/embed/mgN-XsGF-Nw?si=CrHtgI24xClRgpgG?vq=hd1080" frameborder="0" allowfullscreen></iframe>
         <br>
-        <span style="font-style: italic;">Audio copyright issue is preventing the video from being played here, please visit the <a href="https://www.youtube.com/watch?v=mgN-XsGF-Nw&si=CrHtgI24xClRgpgG" target="_blank">YouTube Link</a> to view the video.</span>
+        <span style="font-style: italic;">Audio copyright issues might prevent the video from being played here, please visit the <a href="https://www.youtube.com/watch?v=mgN-XsGF-Nw&si=CrHtgI24xClRgpgG" target="_blank">YouTube Link</a> to view the video.</span>
     </div>
-
+    <br>
     <div class="project-description">
         <!-- Add your project description here -->
+        <div style="font-style: italic; font-weight: lighter;"> The project information is divided into the following sections.</div>
         <br>
-        <div style="font-weight: bold; font-size: 20px;">Key Points</div>
-        <br>
-        Color Switch is a clone game of "Color Switch" for Android and iOS, which is available on <a href="https://play.google.com/store/apps/details?id=com.colorswitch.switch2" style="color: blue;" target="_blank">Play Store</a> and <a href="https://apps.apple.com/in/app/color-switch/id1314725881" style="color: blue;" target="_blank">App Store</a>. I tried to replicate the same for a Windows-based device.
-
-        <br><br>
-        It features a randomly colored player and the player has to go through multiple colored obstacles to reach the Finish Line.
-        <br><br>
-        The obstacles are divided into 4 differently coloured panels, with one colour being the same as the player's. The player can only cross through the same colored panel or else he will die.
-        <br><br>
-        The obstacles continuously move and rotate to make the level more challenging for the player.
-        <br><br>
-        There is functionality for custom particle system effects for player death and player win. The game currently supports only a single level but is planned to expand soon.
-        <br><br>
-        <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
+        <details>
+            <summary>What is it?</summary>
+            <p style="display: block; text-align: left;">
+                • It is a very basic windows-based clone of the mobile game, Color Switch (<a href="https://play.google.com/store/apps/details?id=com.colorswitch.switch2" style="color: blue;" target="_blank">Play Store</a> and <a href="https://apps.apple.com/in/app/color-switch/id1314725881" style="color: blue;" target="_blank">App Store</a>). It only consists of 1 level.
+                <br>
+                • It is a colour-based puzzle where the player has to match their ball's colour to the obstacles' in order to proceed. The obstacles keep moving and rotating to make the level more challenging.
+                <br>
+                • I have implemented the entirety of the project, using Unity Engine and C#.
+            </p>
+        </details>
+        <details>
+            <summary>Motivation</summary>
+            <p style="display: block; text-align: left;">
+                • The main motivation behind this project was learning. I wanted to learn how to replicate a well established game logic and mechanics. It also polished my implementation of click-based input and introduced me to particle systems in Unity.
+            </p>
+        </details>
+        <details>
+            <summary>Work Done</summary>
+            <p style="display: block; text-align: left;">
+                • Implemented the click-based input system. colour puzzle elements, and the gameplay physics.
+                <br>
+                • Created the main game loop, the particle systems, and the UI/UX of the game.
+            </p>
+            <div class="code">
+                <details>
+                    <summary>Code Example</summary>
+                    <span style="display: block; text-align: left; margin: 5px;">The <span style="font-family: monospace;">ColliderChecker.cs</span> file is responsible for dictating the collision logic. It shows the use of Unity APIs and also shows the drawbacks of my code from the start of my Unity learning.</span>
+                        <code>
+if(collider.transform.tag == "color change")
+{     
+    this.transform.parent.gameObject.GetComponent&lt;PlayerColorManager&gt;().ChangeColor();
+    Destroy(collider.gameObject);
+}
+if(collider.tag == "hurdle")
+{
+    this.transform.parent.gameObject.GetComponent&lt;PlayerGameplayManager&gt;().CheckColorWithHurdle(collider);
+}
+if(collider.tag == "end")
+{
+    GameObject.FindGameObjectWithTag("end crackers").GetComponent&lt;EndCrackers&gt;().Diwali();
+    GameObject.FindGameObjectWithTag("gameplay").GetComponent&lt;Timer&gt;().End();
+}
+if(collider.tag == "star")
+{
+    Destroy(collider.gameObject);
+    this.transform.parent.gameObject.GetComponent&lt;PlayerGameplayManager&gt;().Score();
+}
+<a href="https://github.com/KushagraYashu/MSc-Project/blob/3df40edf3b92307dfc191e62e38261f46f60da48/Assets/Scripts/Matchmaking%20Systems/SmartMatchSystemManager.cs#L584" target="_blank">Full Script (GitHub)</a>
+                        </code>
+                    This snippet can be clearly improved by implementing singleton managers (<span style="font-family: monospace;">PlayerColorManager, PlayerGameplayManager</span>), this will replace the expensive lookup command. Implementing the <span style="font-family: monospace;">CompareTag</span> method instead of string comparison and caching the frequently used references will also help with efficiency and reliability.
+                </details>
+            </div>
+            <div class="photos">
+                <details>
+                    <summary>Photos</summary>
+                    Main Screen:
+                    <img src="../Pics/ColorSwitch/mainScreen.png" style="max-width: 100%;">
+                    Gameplay:
+                    <img src="../Pics/ColorSwitch/level.png" style="max-width: 100%;">
+                    Dead Screen:
+                    <img src="../Pics/ColorSwitch/deadScreen.png" style="max-width: 100%;">
+                    Win Screen:
+                    <img src="../Pics/ColorSwitch/winScreen.png" style="max-width: 100%;">
+                </details>
+            </div>
+        </details>
+        <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
     <br>
     <div class="repoContainer">

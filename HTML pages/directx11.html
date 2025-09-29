@@ -20,7 +20,7 @@
             text-align: center;
             font-size: 36px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 60px;
         }
 
         .video-container {
@@ -80,6 +80,116 @@
             border: none;
             border-radius: 5px;
             transition: transform 0.3s;
+            z-index: 1000; /* Ensure the button is above other content */
+        }
+
+        .project-description details {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .project-description details summary {
+            background-color: #000;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            /* removes default triangle */
+            position: relative;
+        }
+
+        .project-description details summary::after {
+            content: "▶";
+            /* custom arrow */
+            position: absolute;
+            left: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .project-description details[open] summary::after {
+            transform: rotate(90deg);
+            /* rotate arrow when open */
+        }
+
+        .project-description details p,
+        details div {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .project-description .photos details summary {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 16px 12px 36px;
+            /* left padding for icon */
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset inherited arrow style */
+        .project-description .photos details summary::after {
+            all: unset;
+            content: "📷";
+            /* camera icon */
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .project-description .photos details img {
+            margin: 10px auto;
+            border-radius: 6px;
+            display: block;
+            max-width: 90%;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* --- Code section redesign --- */
+        .project-description .code details summary {
+            background-color: #000;
+            color: #fff;
+            /* terminal green */
+            padding: 12px 16px 12px 36px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset arrow again */
+        .project-description .code details summary::after {
+            all: unset;
+            content: "🛠️";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        code {
+            display: block;
+            text-align: left;
+            background-color: #cfcfcf;
+            white-space: pre-wrap;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         @media only screen and (max-width: 810px) {
@@ -139,29 +249,112 @@
         <iframe width="560" height="315" src="https://www.youtube.com/embed/11IzwhsLVKM?si=eR8gAxwnb_ppPB1K?vq=hd1080" frameborder="0" allowfullscreen></iframe>
     </div>
     <div class="project-description" style="font-style: italic;">
-        The video for the second part of the project, showcasing the perlin noise based height maps, along with realistic volumetric clouds and collision detection.
+        The video for the second part of the project, showcasing the Perlin noise based height maps, along with realistic volumetric clouds and collision detection.
         <br><br>
     </div>
 
     <div class="project-description">
         <!-- Add your project description here -->
-        <div style="font-weight: bold; font-size: 20px;">Key Points</div>
+        <div style="font-style: italic; font-weight: lighter;"> The project information is divided into the following sections.</div>
         <br>
-        It is a simulation showcasing a dynamic terrain influenced by perlin noise height map texture and tessellation, integrated with a realistic day-night cycle and volumetric clouds with collision detection.
-        <br><br>
-        Dynamic Terrain and Tessellation: A perlin noise height map manipulates a plane mesh that is dynamically tessellated for enhanced detail; Normals are correctly calculated using the height map for accurate lighting.
-        <br><br>
-        Volumetric Clouds: Clouds are generated using a 3D texture with a perlin noise function, creating a realistic cloud formation; The clouds are rendered with alpha blending and depth testing for accurate layering. They adhere to the laws of physics and fluid mechanics, allowing for realistic movement and interaction with the environment.
-        <br><br>
-        Collision Detection: Implemented by comparing height values between objects and height maps, allowing for accurate object placement and interaction.
-        <br><br>
-        Flexible Terrain Shading: The terrain can be shaded with three different materials based on the height map and user provided values, allowing for a variety of visual styles.
-        <br><br>
-        Post-Processing: Color grading for scene-wide adjustments in brightness, contrast, and saturation; Bloom with multiple passes, applied to both the sun and the scene for a radiant effect.
-        <br><br>
-        Additional Visual Features: Sky Dome, A Sky Dome sphere rendered without the depth buffer to create the illusion of a distant skybox. A day-night cycle with a sun, where the sun's position is calculated based on the time of day, affecting the scene's lighting and color grading.
-        <br><br>
-        <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
+        <details>
+            <summary>What is it?</summary>
+            <p style="display: block; text-align: left;">
+                • It is a DirectX11 based rendering software showcasing a dynamic terrain influenced by Perlin noise height maps, custom multiple textures, and dynamic tessellation. 
+                <br>
+                • It is integrated with a realistic day-night cycle and volumetric clouds, with basic collision detection and gameplay mechanics.
+                <br>
+                • I have implemented the entirety of the project, using DirectX11 pipeline, C++, and HLSL, alongside RenderDoc utility to debug and verify stages of the render.
+            </p>
+        </details>
+        <details>
+            <summary>Motivation</summary>
+            <p style="display: block; text-align: left;">
+                • This project is used in the Graphics and Procedural Programming modules of my MSc, and also serves as a learning project for the DirectX11 pipeline and RenderDoc.
+            </p>
+        </details>
+        <details>
+            <summary>Work Done</summary>
+            <p style="display: block; text-align: left;">
+                • Implemented Perlin noise derived terrain, alongside dynamic tessellation and precise surface normal calculations.
+                <br>
+                • Created a volumetric cloud system adhering to fluid mechanics. The clouds further use 3D-Perlin noise for realistic formation, movement, and environment interaction.
+                <br>
+                • Devised a flexible terrain shading system, allowing for three different materials based on height map and user provided values. Also created a sky dome and a day-night cycle with a sun affecting scene lighting and color grading.
+                <br>
+                • Programmed gameplay and collision detection using height map values, allowing for accurate object placement and interaction.
+                <br>
+                • Implemented a post-processing stack, including color grading and multi-pass bloom effects for enhanced visual fidelity.
+                <br>
+                • Designed and implemented a comprehensive UI (using ImGui) for real-time control over the entire simulation parameters, some of them are, time of day, terrain features, and cloud dynamics.
+            </p>
+            <div class="code">
+                <details>
+                    <summary>Code Example</summary>
+                    <span style="display: block; text-align: left; margin: 5px;">Below is an excerpt from <span style="font-family: monospace;">CloudShader_ps.hlsl</span>, where I implemented   <strong>volumetric cloud rendering</strong> using <em>ray marching</em>, <em>Beer-Lambert law</em>, and the <em>Henyey-Greenstein phase function</em>. This shader calculates light scattering and absorption inside a procedurally generated cloud volume and returns the appropriately calculated and gamma corrected final colour.</span>
+                        <code>
+// The Ray Marching Loop
+for (int i = 0; i < sA_SamNo_G.y; i++)
+{
+        float t = t0 + stepSize * (i + randVal);
+        float3 samplePoint = rayOrigin + t * rayDir;
+        
+        // Perlin noise density
+        float3 uvw = (samplePoint - boxMin) / (boxMax - boxMin);
+        uvw += float3(scrollSpeed.x * time, 0, scrollSpeed.y * time);
+        float perlinVal = texture0.SampleLevel(Sampler0, uvw, 0).r;
+        float rho = density * (perlinVal * 0.5 + 0.5);
+        
+        // Beer's law
+        float scattCoeff = (sA_SamNo_G.x + sigma_s) * rho;
+        float sampleTransparency = exp(-stepSize * scattCoeff);
+        transparency *= sampleTransparency;
+
+        if (transparency < 0.001) { transparency = 0.001f; break; }
+        
+        // Lighting & scattering
+        float light_t0, light_t1;
+        if (intersectAABB(samplePoint, lightDir, boxMin, boxMax, light_t0, light_t1))
+        {
+            float cos_theta = dot(normalize(lightDir), normalize(-rayDir));
+            float lightFalloff = exp(-light_t1 * scattCoeff);
+            result += transparency *
+                      HGPhaseFunc(sA_SamNo_G.z, cos_theta) *
+                      float4(max(saturate(lightColor.rgb * 15), 0.01), 1) *
+                      lightFalloff * sigma_s * stepSize;
+        }
+}
+
+// Final blend with background
+finalColor.rgb = (backgroundColor.rgb * transparency) + result.rgb;
+    
+// Gamma correction
+finalColor.rgb = pow(finalColor.rgb, 1 / 2.2);
+    
+// returning with final attenuation, it'd be useful in blending with other render texture
+return float4(finalColor.rgb, transparency);
+
+<a href="https://github.com/KushagraYashu/Living-Lanscape-PCG-DirectX11/blob/e392502723a430b23e4e17d836e368c70b07f3e5/Coursework/Coursework/CloudsShader_ps.hlsl" target="_blank">Shader File (GitHub)</a>
+                        </code>
+                </details>
+            </div>
+            <div class="photos">
+                <details>
+                    <summary>Photos</summary>
+                    Overview:
+                    <img src="../Pics/DirectXPics/overview.png" style="max-width: 100%;">
+                    Dynamic Tessellation:
+                    <img src="../Pics/DirectXPics/tessellation.png" style="max-width: 100%;">
+                    Volumetric Clouds:
+                    <img src="../Pics/DirectXPics/clouds.png" style="max-width: 100%;">
+                    Inside the Cloud System:
+                    <img src="../Pics/DirectXPics/insideClouds.png" style="max-width: 100%;">
+                    Controls UI:
+                    <img src="../Pics/DirectXPics/DebugUI.png" style="max-width: 100%;">
+                </details>
+            </div>
+        </details>
+        <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
     <br>
     <div class="repoContainer">
