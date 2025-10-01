@@ -20,7 +20,7 @@
         .project-name {
             font-size: 36px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 60px;
         }
 
         .video-container {
@@ -83,6 +83,115 @@
             transition: transform 0.3s;
         }
 
+        .project-description details {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .project-description details summary {
+            background-color: #000;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            /* removes default triangle */
+            position: relative;
+        }
+
+        .project-description details summary::after {
+            content: "▶";
+            /* custom arrow */
+            position: absolute;
+            left: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .project-description details[open] summary::after {
+            transform: rotate(90deg);
+            /* rotate arrow when open */
+        }
+
+        .project-description details p,
+        details div {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .project-description .photos details summary {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 16px 12px 36px;
+            /* left padding for icon */
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset inherited arrow style */
+        .project-description .photos details summary::after {
+            all: unset;
+            content: "📷";
+            /* camera icon */
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .project-description .photos details img {
+            margin: 10px auto;
+            border-radius: 6px;
+            display: block;
+            max-width: 90%;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* --- Code section redesign --- */
+        .project-description .code details summary {
+            background-color: #000;
+            color: #fff;
+            /* terminal green */
+            padding: 12px 16px 12px 36px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset arrow again */
+        .project-description .code details summary::after {
+            all: unset;
+            content: "🛠️";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        code {
+            display: block;
+            text-align: left;
+            background-color: #cfcfcf;
+            white-space: pre-wrap;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
         @media only screen and (max-width: 810px) {
             /* Media query for screens up to 600px wide (typically smartphones) */
             .project-name {
@@ -129,6 +238,120 @@
     <div class="video-container">
         <!-- Replace the src attribute with your YouTube video link -->
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Y4iXd19OIxw?si=SbIv2ipsN4cNYMvl?vq=hd1080" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="project-description">
+        <!-- Add your project description here -->
+        <div style="font-style: italic; font-weight: lighter;"> The project information is divided into the following sections.</div>
+        <br>
+        <details>
+            <summary>What is it?</summary>
+            <p style="display: block; text-align: left;">
+                • iPark is a machine learning project that utilises Unity ML-Agents, Reinforcement Learning (RL), and the Unity game engine to create an intelligent system capable of parking a car in various dynamic scenarios.
+                <br>
+                • It features 2 modes: Training and Evaluation. In Training mode, the agent learns to park the car using Reinforcement Learning techniques, specifically the Proximal Policy Optimisation (PPO) algorithm provided by Unity ML-Agents. In Evaluation mode, the trained model autonomously parks the car in a random empty slot while avoiding collisions.
+                <br>
+                • I have implemented the entire programming end of the project using Unity Engine and C#, with UI design, AI modelling and refinement, and production being responsibilities of other teammates.
+                <br>
+                • The project also led to a <a href="https://doi.org/10.36948/ijfmr.2024.v06i03.21878" style="color: blue;" target="_blank">Research Paper</a>, targeting autonomous car parking.
+            </p>
+        </details>
+        <details>
+            <summary>Motivation</summary>
+            <p style="display: block; text-align: left;">
+                • This project served as the final year undergrad project. It also introduced me to the real-world implementations of machine learning, reinforcement learning, and the Unity ML-Agents toolkit.
+                <br>
+                • It also serves the purpose of sharpening my team development, leadership, and presentation skills.
+            </p>
+        </details>
+        <details>
+            <summary>Work Done</summary>
+            <p style="display: block; text-align: left;">
+                • Implemented AI agent behaviour, training, evaluation, and environment interaction according to the requirements of the project, alongside the help of the AI engineer in the team.
+                <br>
+                • Programmed gameplay, UI, and main loop. This made the project more than just an AI tool and increased user interactivity. 
+                <br>
+                • Designed and implemented the training and evaluation levels with appropriate models.
+                <br>
+                • Acted as a team lead, managing the project timeline, tasks, and team communication.
+            </p>
+            <div class="code">
+                <details>
+                    <summary>Code Example</summary>
+                    <span style="display: block; text-align: left; margin: 5px;">The script (<span style="font-family: monospace;">CameraWipeOut.cs</span>) creates an interactive wiping effect on the camera overlay. As the player clicks and drags, sprite masks are instantiated where the   cursor hits, gradually "clearing" steam or any screen wide distractions. Once a threshold of cleared area is reached, the overlay is removed. This mechanic combines <em>raycasting</em>, <em>physics colliders</em>, and <em>procedural instantiation</em>.</span>
+                        <code>
+void Update()
+{
+    var mousePos = Input.mousePosition;
+    mousePos.z = Camera.main.nearClipPlane;
+    Ray ray = Camera.main.ScreenPointToRay(mousePos);
+    RaycastHit hit;
+
+    if (Input.GetKey(KeyCode.Mouse0))
+        isPressed = true;
+    else if (Input.GetKeyUp(KeyCode.Mouse0))
+        isPressed = false;
+
+    if (Physics.Raycast(ray, out hit) && isPressed)
+    {
+        if (hit.transform.CompareTag("CameraOverlay"))
+        {
+            var mask = Instantiate(spriteMaskPrefab, hit.point, Quaternion.identity);
+            mask.transform.SetParent(steam, true);
+            mask.transform.localPosition = new Vector3(mask.transform.localPosition.x, mask.transform.localPosition.y, -0.2f);
+            mask.transform.rotation = steam.rotation;
+
+            masks.Add(mask);
+
+            if (CheckCleared())
+            {
+                wiped = true;
+                foreach(var maskItem in masks)
+                {
+                    maskItem.GetComponent&lt;BoxCollider&gt;().enabled = false;
+                    Destroy(maskItem, 3);
+                }
+            }
+        }
+    }
+}
+
+bool CheckCleared()
+{
+    clearedArea = 0;
+    foreach (var mask in masks)
+    {
+        if (mask != null && mask.TryGetComponent&lt;BoxCollider&gt;(out var maskCollider))
+            clearedArea += maskCollider.bounds.size.x * maskCollider.bounds.size.y;
+    }
+
+    ratio = clearedArea / steamArea;
+    return ratio >= clearThreshold;
+}
+
+<a href="https://github.com/KushagraYashu/freshers-game-jam/blob/bd042dba650d0ea74f7f3bd86ed2ba84279ac858/Assets/Scripts/CameraWipeOut.cs" target="_blank">Full Script (GitHub)</a>
+                        </code>
+                </details>
+            </div>
+            <div class="photos">
+                <details>
+                    <summary>Photos</summary>
+                    Pumpkin Distraction:
+                    <img src="../Pics/WrongFloor/pumpkinDistraction.png" style="max-width: 100%;">
+                    Laser Gun Power-Up:
+                    <img src="../Pics/WrongFloor/laserGun.png" style="max-width: 100%;">
+                    Death Screen:
+                    <img src="../Pics/WrongFloor/deadScreen.png" style="max-width: 100%;">
+                    Train Station Level:
+                    <img src="../Pics/WrongFloor/railwayLevel.png" style="max-width: 100%;">
+                    Security Code Distraction:
+                    <img src="../Pics/WrongFloor/codeDistraction.png" style="max-width: 100%;">
+                    Leaderboard (with example data values):
+                    <img src="../Pics/WrongFloor/leaderboard.png" style="max-width: 100%;">
+                </details>
+            </div>
+        </details>
+        <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
 
     <div class="project-description">
