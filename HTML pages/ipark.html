@@ -273,106 +273,66 @@
                 <br>
                 • Designed and implemented the training and evaluation levels with appropriate models.
                 <br>
+                • Created an evaluation system for the models with a data export functionality. This makes comparision and data analysis much easier.
+                <br>
                 • Acted as a team lead, managing the project timeline, tasks, and team communication.
             </p>
             <div class="code">
                 <details>
                     <summary>Code Example</summary>
-                    <span style="display: block; text-align: left; margin: 5px;">The script (<span style="font-family: monospace;">CameraWipeOut.cs</span>) creates an interactive wiping effect on the camera overlay. As the player clicks and drags, sprite masks are instantiated where the   cursor hits, gradually "clearing" steam or any screen wide distractions. Once a threshold of cleared area is reached, the overlay is removed. This mechanic combines <em>raycasting</em>, <em>physics colliders</em>, and <em>procedural instantiation</em>.</span>
+                    <span style="display: block; text-align: left; margin: 5px;">Implemented a custom ML-Agents <span style="font-family: monospace;">CollectObservations</span> function to train an AI car agent for parking. The agent receives relative positional, directional, and velocity observations, with shaped rewards encouraging alignment toward the target slot.</span>
                         <code>
-void Update()
+public override void CollectObservations(VectorSensor sensor)
 {
-    var mousePos = Input.mousePosition;
-    mousePos.z = Camera.main.nearClipPlane;
-    Ray ray = Camera.main.ScreenPointToRay(mousePos);
-    RaycastHit hit;
-
-    if (Input.GetKey(KeyCode.Mouse0))
-        isPressed = true;
-    else if (Input.GetKeyUp(KeyCode.Mouse0))
-        isPressed = false;
-
-    if (Physics.Raycast(ray, out hit) && isPressed)
+    if (_lastActions != null && _simulationManager.InitComplete)
     {
-        if (hit.transform.CompareTag("CameraOverlay"))
-        {
-            var mask = Instantiate(spriteMaskPrefab, hit.point, Quaternion.identity);
-            mask.transform.SetParent(steam, true);
-            mask.transform.localPosition = new Vector3(mask.transform.localPosition.x, mask.transform.localPosition.y, -0.2f);
-            mask.transform.rotation = steam.rotation;
+        if(_nearestLot == null)
+            _nearestLot = _simulationManager.GetRandomEmptyParkingSlot();
 
-            masks.Add(mask);
+        Vector3 dirToTarget = (_nearestLot.transform.position - transform.position).normalized;
 
-            if (CheckCleared())
-            {
-                wiped = true;
-                foreach(var maskItem in masks)
-                {
-                    maskItem.GetComponent&lt;BoxCollider&gt;().enabled = false;
-                    Destroy(maskItem, 3);
-                }
-            }
-        }
+        // Add observations (relative position, velocity, direction, orientation)
+        sensor.AddObservation(transform.position.normalized);
+        sensor.AddObservation(this.transform.InverseTransformPoint(_nearestLot.transform.position));
+        sensor.AddObservation(this.transform.InverseTransformVector(_rigidBody.velocity.normalized));
+        sensor.AddObservation(this.transform.InverseTransformDirection(dirToTarget));
+        sensor.AddObservation(transform.forward);
+        sensor.AddObservation(transform.right);
+
+        // Reward shaping: encourage moving toward target
+        float velocityAlignment = Vector3.Dot(dirToTarget, _rigidBody.velocity);
+        AddReward(0.001f * velocityAlignment);
+    }
+    else
+    {
+        // Fallback: no valid data
+        sensor.AddObservation(new float[18]);
     }
 }
 
-bool CheckCleared()
-{
-    clearedArea = 0;
-    foreach (var mask in masks)
-    {
-        if (mask != null && mask.TryGetComponent&lt;BoxCollider&gt;(out var maskCollider))
-            clearedArea += maskCollider.bounds.size.x * maskCollider.bounds.size.y;
-    }
-
-    ratio = clearedArea / steamArea;
-    return ratio >= clearThreshold;
-}
-
-<a href="https://github.com/KushagraYashu/freshers-game-jam/blob/bd042dba650d0ea74f7f3bd86ed2ba84279ac858/Assets/Scripts/CameraWipeOut.cs" target="_blank">Full Script (GitHub)</a>
+<a href="https://github.com/KushagraYashu/iPark/blob/b2f6186a9ad1486f690721a1e9ea5bd3ca595358/Assets/Scripts/AutoParkAgent.cs" target="_blank">Full Script (GitHub)</a>
                         </code>
                 </details>
             </div>
             <div class="photos">
                 <details>
                     <summary>Photos</summary>
-                    Pumpkin Distraction:
-                    <img src="../Pics/WrongFloor/pumpkinDistraction.png" style="max-width: 100%;">
-                    Laser Gun Power-Up:
-                    <img src="../Pics/WrongFloor/laserGun.png" style="max-width: 100%;">
-                    Death Screen:
-                    <img src="../Pics/WrongFloor/deadScreen.png" style="max-width: 100%;">
-                    Train Station Level:
-                    <img src="../Pics/WrongFloor/railwayLevel.png" style="max-width: 100%;">
-                    Security Code Distraction:
-                    <img src="../Pics/WrongFloor/codeDistraction.png" style="max-width: 100%;">
-                    Leaderboard (with example data values):
-                    <img src="../Pics/WrongFloor/leaderboard.png" style="max-width: 100%;">
+                    Main Screen:
+                    <img src="../Pics/iPark/mainMenu.png" style="max-width: 100%;">
+                    Evaluation Mode (Choose Model):
+                    <img src="../Pics/iPark/evaluationScreen.png" style="max-width: 100%;">
+                    Evaluation In Progress:
+                    <img src="../Pics/iPark/execution.png" style="max-width: 100%;">
+                    Model Efficiency Data Export (A data entry is done every time E or the Exit button is pressed):
+                    <img src="../Pics/iPark/efficiencyOutput.png" style="max-width: 100%;">
+                    Training Mode (Only available in Unity Editor with ML-Agents installed):
+                    <img src="../Pics/iPark/trainingMode.png" style="max-width: 100%;">
                 </details>
             </div>
         </details>
         <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
-
-    <div class="project-description">
-        <!-- Add your project description here -->
-        <div style="font-weight: bold; font-size: 20px;">Key Points</div>
-        <br>
-        iPark: Intelligent Parking is a machine learning project that utilizes Unity ML-Agents, Reinforcement Learning (RL), and the Unity game engine to create an intelligent system capable of parking a car in various dynamic scenarios.
-        <br><br>
-        It can work in 2 modes: Training and Evaluation. When the project is run in Unity Engine alongside Unity ML-Agents, it can be used to train a model for the task of car parking. When the executable or exported file is run, it works in model evaluation mode.
-        <br><br>
-        In evaluation, the agent autonomously parks the car in a random empty slot avoiding any collisions.
-        <br><br>
-        In training, the agent learns this behavior through Reinforcement Learning techniques. Precisely, it uses Proximal Policy Optimisation (PPO) alogorithm provided by the Unity ML-Agents.
-        <br><br>
-        It is a group project led by Kushagra and is the foundation of a <a href="https://doi.org/10.36948/ijfmr.2024.v06i03.21878" style="color: blue;" target="_blank">Research Paper</a>.
-        <br><br>
-        The project report can be found <a href="https://github.com/KushagraYashu/iPark/blob/main/iPark%20Documents/Report/iPark%20Project%20Report%20%5BHardBind%5D.pdf" style="color: blue;" target="_blank">here</a>.
-        <br><br>
-        <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
-    </div>
-    <br>
+    <br><br>
     <div class="repoContainer">
         <a href="https://github.com/KushagraYashu/iPark" class="repository-button" target="_blank">Repository Link</a>
     </div>
