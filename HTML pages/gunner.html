@@ -19,7 +19,7 @@
         .project-name {
             font-size: 36px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 60px;
         }
 
         .video-container {
@@ -79,6 +79,116 @@
             border: none;
             border-radius: 5px;
             transition: transform 0.3s;
+            z-index: 1000;;
+        }
+
+        .project-description details {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .project-description details summary {
+            background-color: #000;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            /* removes default triangle */
+            position: relative;
+        }
+
+        .project-description details summary::after {
+            content: "▶";
+            /* custom arrow */
+            position: absolute;
+            left: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .project-description details[open] summary::after {
+            transform: rotate(90deg);
+            /* rotate arrow when open */
+        }
+
+        .project-description details p,
+        details div {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .project-description .photos details summary {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 16px 12px 36px;
+            /* left padding for icon */
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset inherited arrow style */
+        .project-description .photos details summary::after {
+            all: unset;
+            content: "📷";
+            /* camera icon */
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .project-description .photos details img {
+            margin: 10px auto;
+            border-radius: 6px;
+            display: block;
+            max-width: 90%;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* --- Code section redesign --- */
+        .project-description .code details summary {
+            background-color: #000;
+            color: #fff;
+            /* terminal green */
+            padding: 12px 16px 12px 36px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset arrow again */
+        .project-description .code details summary::after {
+            all: unset;
+            content: "🛠️";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        code {
+            display: block;
+            text-align: left;
+            background-color: #cfcfcf;
+            white-space: pre-wrap;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         @media only screen and (max-width: 810px) {
@@ -135,92 +245,94 @@
         <details>
             <summary>What is it?</summary>
             <p style="display: block; text-align: left;">
-                • A scalable Unity C# simulation framework capable of modelling 10,000 synthetic players with fixed real-skill distributions, realistic multiplayer dynamics (probabilistic duels, assists, clutches) and player behaviours (smurfing).
+                • A first-person shooter game based on the training range mode of the famous FPS game Valorant.
                 <br>
-                • It allows reproducible large-scale benchmarking of different matchmaking systems.
+                • It features aim practice, timed bot shooting practice, and a weapons helper system.
                 <br>
-                • I have implemented the entirety of the project, using Unity Engine, C#, and Python for data analysis and visualisation.
+                • I have implemented the entirety of the project, using the Unity Engine and C#, with models sourced from the Unity Asset Store.
             </p>
         </details>
         <details>
             <summary>Motivation</summary>
             <p style="display: block; text-align: left;">
-                • This project is the final MSc coursework project, and is motivated by the lack of matchmaking algorithm benchmarking softwares.
+                • The main motivation behind this project is learning. I wanted to implement and understand the mechanics of a first-person shooter game in the Unity Engine.
                 <br>
-                • The project implements and assesses multiple matchmaking algorithms (Elo, Glicko, TrueSkill, a custom SmartMatch System) in a repeatable manner, providing data-driven insights into their trade-offs.
+                • The project implements multiple practice modes, as mentioned in the earlier section. It also has realistic weapon behaviour (sound effects, animations, etc.), player movement, and UI/UX.
             </p>
         </details>
         <details>
             <summary>Work Done</summary>
             <p style="display: block; text-align: left;">
-                • Implemented synthetic player behaviour, realistic match simulation, and the matchmaking algorithms (Elo, Glicko, TrueSkill, and a novel SmartMatch).
+                • Implemented the training modes, shooting mechanics with visual recoil (mechanical recoil is implemented in the <a href="gunnerUnreal.html" target="_blank">Unreal Engine</a> version of this project), and an FPS camera system.
                 <br>
-                • Performed comparative analysis of fairness, rating convergence, smurf detection, and player experience across algorithms, producing data-driven insights using Python.
+                • Programmed weapon animations for reloading, also created post processing effects for visual enhancements.
                 <br>
-                • Created methods for results visualisation and reporting, including graphs and statistical summaries.
+                • Designed the main level with all the scenery, skybox, distant fog effect, and environment models.
                 <br>
-                • Managed UI and UX for the simulation control and data presentation.
+                • Implemented VFX using Unity's Particle system to create muzzle flashes, hit effects, and other visual enhancements.
                 <br>
-                • Created a robust and extensible software capable of simulating various matchmaking systems under identical conditions, resulting into reproducible and verifiable results.
+                • Built the UI/UX using Unity UI components.
             </p>
             <div class="code">
                 <details>
                     <summary>Code Example</summary>
-                    <span style="display: block; text-align: left; margin: 5px;">The coroutine (<span style="font-family: monospace;">SimulateMatch</span>) simulates a competitive match between two teams, round by round, using an <em>Elo-based probability model</em> for engagements. It also updates per-player statistics such as kills, assists, clutches, and adjusts Elo ratings at the end of the match.</span>
+                    <span style="display: block; text-align: left; margin: 5px;">A weapon switching system using Unity's legacy input handling. The system toggled between available weapons using number keys, ensuring one active weapon at a time. Although functional, it lacked scalability and efficiency</span>
                         <code>
-double p1WinProb = 1.0 / (1.0 + Math.Pow(10, (p2.playerData.RealSkill - p1.playerData.RealSkill) / 400.0));
-bool p1Wins = rng.NextDouble() < p1WinProb; 
-if (p1Wins) 
-{ 
-    p1.playerData.Kills++; 
-    p2.playerData.Deaths++; 
-    aliveTeam2.Remove(p2); 
-} 
-else 
-{ 
-    p2.playerData.Kills++; 
-    p1.playerData.Deaths++; 
-    aliveTeam1.Remove(p1); 
-} 
+void OtherWeaponCheck(int j)
+{
+    for(int i = 0; i < weapons.Length; i++)
+    {
+        if (i == j) continue;
+        if (equipped[i])
+        {
+            weapons[i].SetActive(false);
+            equipped[i] = false;
+        }
+    }
+}
 
-<a href="https://github.com/KushagraYashu/MSc-Project/blob/3df40edf3b92307dfc191e62e38261f46f60da48/Assets/Scripts/Matchmaking%20Systems/SmartMatchSystemManager.cs#L584" target="_blank">Full Method (GitHub)</a>
+void Update()
+{
+    if (Input.GetKeyDown(KeyCode.Alpha1) && weaponEnabled[0] && !PauseMenu.gamePaused && equipEnable)
+    {
+        OtherWeaponCheck(0);
+        weapons[0].SetActive(!equipped[0]);
+        equipped[0] = !equipped[0];
+    }
+    // (Repeated for Alpha2-Alpha6)
+}
+
+<a href="https://github.com/KushagraYashu/Gunner-Unity/blob/e6f3767c6292b7911d3c1162c5305b9785a2e583/Assets/Script/WeaponMaster.cs" target="_blank">Full Script (GitHub)</a>
                         </code>
-                    This snippet shows how each duel outcome is probabilistically determined based on player skill ratings. Over many rounds, this produces realistic match results and allows for post-game Elo adjustments.
+                    This functionality can be clearly improved by using the new Input system (Action maps), a dictionary-based weapon and key mapping, and Event-based switching. This will make the code more clear and scalable.
                 </details>
             </div>
             <div class="photos">
                 <details>
                     <summary>Photos</summary>
-                    Main Screen:
-                    <img src="../Pics/MScProjectPics/mainScreen.png" style="max-width: 100%;">
-                    Simulation Screen:
-                    <img src="../Pics/MScProjectPics/simScreen.png" style="max-width: 100%;">
-                    Exported CSV Data:
-                    <img src="../Pics/MScProjectPics/CSV.png" style="max-width: 100%;">
-                    Verifications for Matchmaking Systems:
-                    <img src="../Pics/MScProjectPics/setVerifications.png" style="max-width: 100%;">
+                    Main Menu:
+                    <img src="../Pics/Gunner/mainMenu.png" style="max-width: 100%;">
+                    Main Scene / Environment:
+                    <img src="../Pics/Gunner/env.png" style="max-width: 100%;">
+                    Buy Menu:
+                    <img src="../Pics/Gunner/buyMenu.png" style="max-width: 100%;">
+                    Pause Menu:
+                    <img src="../Pics/Gunner/pauseMenu.png" style="max-width: 100%;">
+                    Target Practice Mode:
+                    <img src="../Pics/Gunner/targetPrac.png" style="max-width: 100%;">
+                    Bot Shooting Mode:
+                    <img src="../Pics/Gunner/botShoot.png" style="max-width: 100%;">
+                    Weapons Helper Dummy:
+                    <img src="../Pics/Gunner/weaponHelper.png" style="max-width: 100%;">
+                    Credits Screen:
+                    <img src="../Pics/Gunner/creditsScreen.png" style="max-width: 100%;">
                 </details>
             </div>
         </details>
         <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
 
-    <div class="project-description">
-        <!-- Add your project description here -->
-        <div style="font-weight: bold; font-size: 20px;">Key Points</div>
-        <br>
-        Gunner is a First Person Shooter game based on the training range mode of the famous FPS game called VALORANT. It is implementing some basic features of that game.
-        <br><br>
-        It has 6 different weapons such as assault rifles, sniper rifles, and Glock. The player can choose from these options via a "Buy" Menu and then can proceed to play any mode he wishes using the selected weapon.
-        <br><br>
-        The weapon models are from the Unity Asset Store but the Player Controller, Gun Behaviour, and Animations are developed in-house. 
-        <br><br>
-        The Game also features training modes such as target training, Free Bot Shoot training, and Timed Bot Shoot training. All are derived from the "Range" mode of VALORANT.
-        <br><br>
-        The First-person camera controller is made in-house. The player movement is derived from the Character Controller component by Unity Engine. It is also used to implement more features such as Jump.
-        <br><br>
-        <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
-    </div>
+    
     <br>
     <div class="repoContainer">
         <a href="https://github.com/KushagraYashu/Gunner-Unity" class="repository-button" target="_blank">Repository Link</a>

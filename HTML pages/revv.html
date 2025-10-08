@@ -20,7 +20,7 @@
             text-align: center;
             font-size: 36px;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 60px;
         }
 
         .video-container {
@@ -80,6 +80,116 @@
             border: none;
             border-radius: 5px;
             transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .project-description details {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .project-description details summary {
+            background-color: #000;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            /* removes default triangle */
+            position: relative;
+        }
+
+        .project-description details summary::after {
+            content: "▶";
+            /* custom arrow */
+            position: absolute;
+            left: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .project-description details[open] summary::after {
+            transform: rotate(90deg);
+            /* rotate arrow when open */
+        }
+
+        .project-description details p,
+        details div {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .project-description .photos details summary {
+            background-color: #000;
+            color: #fff;
+            padding: 12px 16px 12px 36px;
+            /* left padding for icon */
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset inherited arrow style */
+        .project-description .photos details summary::after {
+            all: unset;
+            content: "📷";
+            /* camera icon */
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+
+        .project-description .photos details img {
+            margin: 10px auto;
+            border-radius: 6px;
+            display: block;
+            max-width: 90%;
+            box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+
+        /* --- Code section redesign --- */
+        .project-description .code details summary {
+            background-color: #000;
+            color: #fff;
+            /* terminal green */
+            padding: 12px 16px 12px 36px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        /* Reset arrow again */
+        .project-description .code details summary::after {
+            all: unset;
+            content: "🛠️";
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        code {
+            display: block;
+            text-align: left;
+            background-color: #cfcfcf;
+            white-space: pre-wrap;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         @media only screen and (max-width: 810px) {
@@ -121,7 +231,7 @@
     <a href="../index.html#projects" class="home-button">Home</a>
     <div class="project-name">REVV Car Simulation</div>
     <div class="project-description">
-        <div style="font-weight: bold;">[ Deferred ]<br></div>
+        <div style="font-weight: bold;">[ Development on Hold ]<br></div>
         A Car Simulation Game.
     </div>
 
@@ -129,21 +239,109 @@
         <!-- Replace the src attribute with your YouTube video link -->
         <iframe width="560" height="315" src="https://www.youtube.com/embed/N3mymQEdipw?si=QLBiycHqboNM336l?vq=hd1080" frameborder="0" allowfullscreen></iframe>
     </div>
+    <div style="font-style: italic; font-weight: lighter;"> The video is not up to date and does not demonstrate all of the implemented features.</div>
+    <br>
 
     <div class="project-description">
         <!-- Add your project description here -->
-        <div style="font-weight: bold; font-size: 20px;">Key Points</div>
+        <div style="font-style: italic; font-weight: lighter;"> The project information is divided into the following sections.</div>
         <br>
-        It is a car simulation game containing various types of cars, the model or art for the whole game is imported from the Unity asset store.
-        <br><br>
-        The vehicle behaviour and controls are developed in-house. To mimic the suspensions, the wheel collider component from Unity Engine is used and the car is driven using the torque property of the same component.
-        <br><br>
-        The system is designed in such a way that the car rarely tumbles over, even at high speeds. To ensure this there is the facility of downforce based on the speed of the car and the centre of mass is also changed to facilitate the stability.<br><br>
-        The wheel friction curve is adjusted to best mimic real-world terrains and is also changed based on the type of ground. For example, Mud and Tarmac have different curve values.
-        <br><br>
-        The player camera is a free-look Cinemachine camera with focus and follows the vehicle with the functionality of returning to its initial position or heading after a certain amount of idle time.
-        <br><br>
-        <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
+        <details>
+            <summary>What is it?</summary>
+            <p style="display: block; text-align: left;">
+                • A realistic car simulation game featuring different sorts of cars (sports, sedan, hatchback, offroaders) and multiple tracks.
+                <br>
+                • It also contains smart opponent AI racing against the player, visual and performance damage upon collision, and different race modes.
+                <br>
+                • I have implemented the entirety of the project using Unity Engine and C#.
+            </p>
+        </details>
+        <details>
+            <summary>Motivation</summary>
+            <p style="display: block; text-align: left;">
+                • This project is inspired by Forza Horizon and my love for cars.
+                <br>
+                • It also served as a learning project. I got to learn and implement car systems, vehicle physics and AI, and Unity mechanics such as Wheel Collider and Spring Joints.
+            </p>
+        </details>
+        <details>
+            <summary>Work Done</summary>
+            <p style="display: block; text-align: left;">
+                • Implemented a realistic car behaviour following physics concepts such as aerodynamic-downforce and surface friction. The car's centre of mass is also adjusted to ensure stability at high speeds and each surface has different friction coefficients.
+                <br>
+                • Designed and sculpted levels and race tracks using Unity's Terrain tools and road building packages from Unity Asset Store.
+                <br>
+                • Programmed vehicle deformation and damage using Unity's Mesh Filters and Colliders.
+                <br>
+                • Created enemy AI and main game loop. The AI uses waypoints to navigate the track, it also avoids obstacles and other cars while attempting overtakes when possible.
+                <br>
+                • Created a polished camera systems using Cinemachine and AAA worthy main menu rendering using light baking techniques.
+                <br>
+                • Programmed and designed the UI.
+            </p>
+            <div class="code">
+                <details>
+                    <summary>Code Example</summary>
+                    <span style="display: block; text-align: left; margin: 5px;">The script (<span style="font-family: monospace;">Deform.cs</span>) dynamically deforms the car mesh when it collides with an object, creating real-time dents and damage depending on collision strength and proximity of vertices to the collision point.</span>
+                        <code>
+void OnCollisionEnter(Collision collision)
+{
+    float collisionPower = collision.impulse.magnitude;
+
+    if (collisionPower > minDamage)
+    {
+        foreach (ContactPoint point in collision.contacts)
+        {
+            for (int i = 0; i < meshVerticies.Length; i++)
+            {
+                Vector3 vertexPosition = meshVerticies[i];
+                Vector3 pointPosition = transform.InverseTransformPoint(point.point);
+                float distanceFromCollision = Vector3.Distance(vertexPosition, pointPosition);
+                float distanceFromOriginal = Vector3.Distance(startingVerticies[i], vertexPosition);
+
+                if (distanceFromCollision < deformRadius && distanceFromOriginal < maxDeform)
+                {
+                    float falloff = 1 - (distanceFromCollision / deformRadius) * damageFalloff;
+                    Vector3 deform = pointPosition * falloff;
+                    deform = Vector3.Min(deform, Vector3.one * maxDeform);
+                    meshVerticies[i] -= deform * damageMultiplier;
+                }
+            }
+        }
+        UpdateMeshVerticies();
+    }
+}
+
+void UpdateMeshVerticies()
+{
+    filter.mesh.vertices = meshVerticies;
+    coll.sharedMesh = filter.mesh;
+}
+
+<a href="https://github.com/KushagraYashu/REVV-revamp-Unity/blob/1a81e4922886bd1b03598cdc88a2c4e5619497f2/Assets/Script/Deform.cs" target="_blank">Full Script (GitHub)</a>
+                        </code>
+                        The photos below will show erratic damage. It is the shortcoming of the models sourced from the Unity Asset Store. The damage system works best when the car is presented as a single mesh with a good amount of vertices. This will allow the code to accurately and smoothly deform the mesh.
+                </details>
+            </div>
+            <div class="photos">
+                <details>
+                    <summary>Photos</summary>
+                    Main Menu Render for the car "Yob":
+                    <img src="../Pics/REVV/mainMenuRender-YOB.png" style="max-width: 100%;">
+                    Offroading:
+                    <img src="../Pics/REVV/offroading1.png" style="max-width: 100%;">
+                    Offroading:
+                    <img src="../Pics/REVV/offroading2.png" style="max-width: 100%;">
+                    Path Following AI:
+                    <img src="../Pics/REVV/pathFollowingAI.png" style="max-width: 100%;">
+                    Race Track (Inspired from the Grand Tour test track "Eboladrome"):
+                    <img src="../Pics/REVV/track.png" style="max-width: 100%;">
+                    Damaged Car:
+                    <img src="../Pics/REVV/damagedCAr.png" style="max-width: 100%;">
+                </details>
+            </div>
+        </details>
+        <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
     <br>
     <div class="repoContainer">
