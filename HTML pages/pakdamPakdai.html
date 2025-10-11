@@ -277,15 +277,61 @@
             </p>
             <div class="code">
                 <details>
-                    <summary>Code (Blueprint) Example</summary>
-                    <span style="display: block; text-align: left; margin: 5px;">The following blueprint method is responsible for firing a shotgun bullet <em>(multiple pellets in different directions)</em>. it works by generating a cone from the muzzle, sampling 8 pellet directions inside that cone, then firing each pellet (line trace) to apply damage and visual effects.</span>
-                    <details style="max-width: 85%;">
-                        <summary>
-                            Interactive Blueprint (blueprintUE iframe)
-                        </summary>
-                        <iframe class="blueprint-iframe" src="https://blueprintue.com/render/djzn-ds7/" scrolling="no" allowfullscreen></iframe>
-                    </details>
-                    <span style="display: block; text-align: left; margin: 5px;">The above <a target="_blank" href="https://blueprintue.com/">blueprintUE</a> iframe might not get displayed properly due to certain restrictions, please <a target="_blank" href="../Pics/Gunner 2/Pump Action Shotgun Pellet Shooting blueprint.png">visit here</a> for a static photograph of it.</span>
+                    <summary>Code Example</summary>
+                    <span style="display: block; text-align: left; margin: 5px;">The following snipped behaves like a game manager,  maintaining win conditions and player collision interactions.</span>
+                    <code>
+public void OnCollisionEnter(Collision collision)
+{
+    if (collision.transform.tag == "Player")
+    {
+        CheckCollisionAndEndGame(collision);
+    }
+    if(collision.transform.tag == "End Collider")
+    {
+        for(int i=0; i&lt;2; i++)
+        {
+            if(players[i].transform.name != this.transform.name)
+            {
+                if(!GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided)
+                {
+                    wonPlayerName.text = players[i].transform.name;
+                    
+                    finalScreen.gameObject.SetActive(true);
+                    GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided = true;
+                }
+            }
+        }
+    }
+}
+
+public void CheckCollisionAndEndGame(Collision collision)
+{
+    if (!GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided)
+    {
+        if ((this.gameObject.GetComponent&lt;RoleCumRoundManager&gt;().isAttacker && collision.gameObject.GetComponent&lt;RoleCumRoundManager&gt;().isDefender))
+        {
+            print("Game has Ended");
+            wonPlayerName.text = this.transform.name;
+            
+            finalScreen.gameObject.SetActive(true);
+            GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided = true;
+        }
+        if ((this.gameObject.GetComponent&lt;RoleCumRoundManager&gt;().isDefender && collision.gameObject.GetComponent&lt;RoleCumRoundManager&gt;().isAttacker))
+        {
+            print("Game has Ended");
+            wonPlayerName.text = collision.transform.name;
+            
+            finalScreen.gameObject.SetActive(true);
+            GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided = true;
+        }
+    }
+}
+
+<a href="https://github.com/KushagraYashu/PAKDAM-PAKDAI-Unity/blob/cfcd0ada951a755e69fb9dc3e53cae0698c7ca1e/Assets/Scripts/RoleCumRoundManager.cs" target="_blank">Full Script (GitHub)</a>
+                        </code>
+                    
+                    
+
                 </details>
             </div>
             <div class="photos">
