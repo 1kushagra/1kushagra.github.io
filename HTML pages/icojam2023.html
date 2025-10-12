@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>IcoJam 2023</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +24,7 @@
             margin-top: 20px;
         }
 
-        .project-name span{
+        .project-name span {
             /* padding: 10px; */
             font-size: 32px;
         }
@@ -40,8 +41,10 @@
 
         .project-description {
             font-size: 16px;
-            text-align: center; /* Center-align the project description */
-            margin: 20px auto; /* Center the description box and decrease its width */
+            text-align: center;
+            /* Center-align the project description */
+            margin: 20px auto;
+            /* Center the description box and decrease its width */
             max-width: 1000px;
         }
 
@@ -49,12 +52,12 @@
             transform: scale(1.1);
         }
 
-        .repository-button:hover{
+        .repository-button:hover {
             /* left: 44.5%; */
             transform: scale(1.1);
         }
 
-        .repoContainer{
+        .repoContainer {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -62,7 +65,8 @@
 
         .repository-button {
             position: fixed;
-            bottom: 20px; /* Set the bottom position with margin */
+            bottom: 20px;
+            /* Set the bottom position with margin */
             display: block;
             background-color: black;
             color: white;
@@ -74,20 +78,21 @@
             transition: transform 0.3s;
         }
 
-        .itchContainer{
+        .itchContainer {
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .itch-button:hover{
+        .itch-button:hover {
             transform: scale(1.1);
         }
 
         .itch-button {
             left: 47.2%;
             position: fixed;
-            bottom: 80px; /* Set the bottom position with margin */
+            bottom: 80px;
+            /* Set the bottom position with margin */
             display: block;
             background-color: black;
             color: white;
@@ -102,7 +107,8 @@
         .home-button {
             position: fixed;
             top: 20px;
-            left: 20px; /* Add left margin to the Home button */
+            left: 20px;
+            /* Add left margin to the Home button */
             background-color: black;
             color: white;
             padding: 10px 20px;
@@ -113,50 +119,102 @@
             transition: transform 0.3s;
         }
 
+        .iframe-loader details {
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .iframe-loader details summary {
+            background-color: #000;
+            color: white;
+            padding: 12px 16px;
+            cursor: pointer;
+            font-weight: bold;
+            list-style: none;
+            /* removes default triangle */
+            position: relative;
+        }
+
+        .iframe-loader details summary::after {
+            content: "▶";
+            /* custom arrow */
+            position: absolute;
+            left: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .iframe-loader details[open] summary::after {
+            transform: rotate(90deg);
+            /* rotate arrow when open */
+        }
+
+        .iframe-loader details p,
+        details div {
+            background: #f5f5f5;
+            padding: 12px 16px;
+            margin: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+
         @media only screen and (max-width: 810px) {
+
             /* Media query for screens up to 600px wide (typically smartphones) */
             .project-name {
-                font-size: 24px; /* Decrease font size for smaller screens */
+                font-size: 24px;
+                /* Decrease font size for smaller screens */
             }
 
-            .project-name span{
+            .project-name span {
                 font-size: 20px;
             }
 
             .video-container iframe {
-                height: 250px; /* Decrease video height for smaller screens */
+                height: 250px;
+                /* Decrease video height for smaller screens */
             }
 
             .project-description {
-                font-size: 14px; /* Decrease font size for smaller screens */
-                margin: 10px auto; /* Adjust margin for smaller screens */
-                max-width: 80%; /* Decrease max-width for smaller screens */
+                font-size: 14px;
+                /* Decrease font size for smaller screens */
+                margin: 10px auto;
+                /* Adjust margin for smaller screens */
+                max-width: 80%;
+                /* Decrease max-width for smaller screens */
             }
 
             .repository-button,
             .home-button {
-                left: 10px; /* Adjust left position for mobile */
-                font-size: 15px; /* Decrease font size for smaller screens */
+                left: 10px;
+                /* Adjust left position for mobile */
+                font-size: 15px;
+                /* Decrease font size for smaller screens */
                 padding: 10px;
             }
 
-            .repository-button{
+            .repository-button {
                 left: 50%;
             }
 
-            .itch-button{
+            .itch-button {
                 left: 50%;
                 bottom: 70px;
             }
 
             .repository-button:active,
-            .home-button:active{
+            .home-button:active {
                 transform: scale(1.1);
             }
         }
-
     </style>
 </head>
+
 <body>
     <a href="../index.html#jams" class="home-button">Home</a>
     <div class="project-name">IcoJam 2023 <br><span style="font-weight: 600; color: rgb(104, 104, 104); text-decoration: underline;">Created Game: 3 Waves 2 Lives 1 Player</span></div>
@@ -189,6 +247,13 @@
         <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
     </div>
     <br>
+    <br>
+    <details class="iframe-loader">
+        <summary>Click to Play the Game</summary>
+        <iframe frameborder="0" src="https://itch.io/embed-upload/8420074?color=111111" allowfullscreen="" width="1100" height="700"><a href="https://kushagra0.itch.io/3waves2lives1player">Play 3 Waves 2 Lives 1 Player on itch.io</a></iframe>
+    </details>
+
+    <br><br><br>
     <div class="itchContainer">
         <a href="https://kushagra0.itch.io/3waves2lives1player" class="itch-button" target="_blank">Itch Page</a>
     </div>
@@ -200,4 +265,5 @@
     <br>
     <br>
 </body>
+
 </html>

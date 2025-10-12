@@ -235,7 +235,7 @@
     <div class="project-name">Run</div>
     <div class="project-description">
         <!-- <div style="font-weight: bold;">[ In Progress ]<br></div> -->
-        A platform based Runner game.
+        A Runner game.
     </div>
 
     <div class="video-container">
@@ -250,31 +250,27 @@
         <details>
             <summary>What is it?</summary>
             <p style="display: block; text-align: left;">
-                • It is a Unity Implementation of "Chase & Tag", where one player has to chase the other to win and the other player has to survive for some time to attain victory.
+                • It is a runner game and the my first ever project in Unity.
                 <br>
-                • It features local multiplayer input system, with one player assigned WASD and the other the arrow keys (←↑↓→) for movement.
+                • The player has the goal to reach 500 points, after which the game ends. The score points increase based on the distance and the speed of the player's cube.
                 <br>
-                • One of the players will randomly be assigned the chaser role while the other will be the survivor or runner.
+                • The player will face enemy cubes in his path, the enemies will also shoot at the player. An enemy bullet does 2HP of damage, while colliding with the enemy decreases 15HP from the total of 100 Player HP.
                 <br>
-                • The chaser will be crowned winner if they tag the survivor before time runs out, otherwise the survivor wins. If any player falls off the platform then the opposing player wins.
-                <br>
-                • The game also includes abilities such as extra speed, which provides extra zing to the game and keeps it interesting for both players.
+                • There are also abilities such as Speed and Heal. Heal ability heals up the player to full 100HP while speed boosts the movement speed of the player for a limited time.
             </p>
         </details>
         <details>
             <summary>Motivation</summary>
             <p style="display: block; text-align: left;">
-                • The main motivation behind this project is learning. I wanted to learn how to implement an existing game concept.
-                <br>
-                • The project also helped with my Unity programming skills, specifically the input system and multiple camera management.
+                • The main motivation behind this project is learning. I wanted to learn how to create a game in the Unity engine using C#.
             </p>
         </details>
         <details>
             <summary>Work Done</summary>
             <p style="display: block; text-align: left;">
-                • Implemented the multiplayer input and camera system.
+                • Implemented the gameplay and input system.
                 <br>
-                • Designed the main level with all of the hurdles and abilities using <em>ProBuilder</em>.
+                • Designed the main level with all of the enemies and abilities.
                 <br>
                 • Programmed the abilities and main game loop.
                 <br>
@@ -283,60 +279,75 @@
             <div class="code">
                 <details>
                     <summary>Code Example</summary>
-                    <span style="display: block; text-align: left; margin: 5px;">The following snipped behaves like a game manager,  maintaining win conditions and player collision interactions.</span>
+                    <span style="display: block; text-align: left; margin: 5px;">The following snipped is responsible the movement of the player cube.</span>
                     <code>
-public void OnCollisionEnter(Collision collision)
-{
-    if (collision.transform.tag == "Player")
+    void Update()
     {
-        CheckCollisionAndEndGame(collision);
-    }
-    if(collision.transform.tag == "End Collider")
-    {
-        for(int i=0; i&lt;2; i++)
+        
+        horizontal = Input.GetAxis("Horizontal");
+        if(playerScript.speedBoosts != 0)
         {
-            if(players[i].transform.name != this.transform.name)
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !playerScript.shot)
             {
-                if(!GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided)
-                {
-                    wonPlayerName.text = players[i].transform.name;
-                    
-                    finalScreen.gameObject.SetActive(true);
-                    GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided = true;
-                }
+                multiplier = 8f;
+                Glow.SetActive(true); 
+                Invoke("DisableBoost", boostTime);
+                playerScript.speedBoosts--;
+                
             }
+            
         }
-    }
-}
 
-public void CheckCollisionAndEndGame(Collision collision)
-{
-    if (!GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided)
+        if(Input.GetAxis("Jump") > 0f)
+        {
+            slowed = true;
+            slowedText.SetActive(true);
+        }
+
+        else
+            slowed = false;
+        
+    }
+    
+
+    private void FixedUpdate()
     {
-        if ((this.gameObject.GetComponent&lt;RoleCumRoundManager&gt;().isAttacker && collision.gameObject.GetComponent&lt;RoleCumRoundManager&gt;().isDefender))
+        movement = new Vector2(horizontal, 0);
+        
+        Move(speed, horSpeed);
+        
+    }
+
+    private void DisableBoost()
+    {
+        multiplier = 1f;
+        Glow.SetActive(false);
+    }
+
+    private void Move(float sp, float hrsp)
+    {
+        if (slowed == true)
         {
-            print("Game has Ended");
-            wonPlayerName.text = this.transform.name;
-            
-            finalScreen.gameObject.SetActive(true);
-            GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided = true;
+            sp = sp / 2;
+            hrsp /= 2;
+            transform.position += transform.forward * sp * multiplier * Time.deltaTime;
+            sp = sp * 2;
+            hrsp *= 2;
+            rb.AddForce(movement * hrsp);
         }
-        if ((this.gameObject.GetComponent&lt;RoleCumRoundManager&gt;().isDefender && collision.gameObject.GetComponent&lt;RoleCumRoundManager&gt;().isAttacker))
+        else
         {
-            print("Game has Ended");
-            wonPlayerName.text = collision.transform.name;
-            
-            finalScreen.gameObject.SetActive(true);
-            GameObject.FindGameObjectWithTag("Winner Manager").GetComponent&lt;WinnerManager&gt;().winnerDecided = true;
+            transform.position += transform.forward * sp * multiplier * Time.deltaTime;
+            rb.AddForce(movement * hrsp);
+            slowedText.SetActive(false);
         }
     }
-}
 
-<a href="https://github.com/KushagraYashu/PAKDAM-PAKDAI-Unity/blob/cfcd0ada951a755e69fb9dc3e53cae0698c7ca1e/Assets/Scripts/RoleCumRoundManager.cs" target="_blank">Full Script (GitHub)</a>
+<a href="https://github.com/KushagraYashu/RUN/blob/6043903e0094ce7626436a08c28a832087dfa475/Assets/Movement.cs" target="_blank">Full Script (GitHub)</a>
                         </code>
                     
                     <p>
-                        This code can be easily improved by reducing expensive calls to <span style="font-family: monospace;">FindGameObjectWithTag</span> (either use singleton pattern or cache the reference), replacing tag and name checks with references or IDs, and cleaning the role checks for better readability and maintenance.
+                        This code can be improved by replacing <span style="font-family: monospace;">transform.position</span> and <span style="font-family: monospace;">rb.AddForce</span> with <span style="font-family: monospace;">rb.MovePosition</span>, this will ensure that the GameObject follows physics and register collisions properly. Replacing <span style="font-family: monospace;">Invoke()</span> with Coroutines, using new input system, and implementing player states (Slowed, SpeedBoost etc) are more things that will help with clarity, scalability, and maintenance.
                     </p>
 
                 </details>
@@ -367,27 +378,9 @@ public void CheckCollisionAndEndGame(Collision collision)
         <div style="font-style: italic; font-weight: lighter;"> More details can be provided upon request.</div>
     </div>
 
-    <div class="project-description">
-        <!-- Add your project description here -->
-        <div class = "title">Key Points</div>
-        <br>
-        RUN is a platform-based running game and is one of my first Unity Projects.
-        <br><br>
-        The player has the goal to reach 500 score points upon completion after which the game ends. The score points increase based on the distance and the speed of the player's cube.
-        <br><br>
-        The player will face enemy cubes in his path, the enemies will also shoot at the player.
-        <br><br>
-        An enemy bullet does 2HP of damage while colliding with the enemy, which decreases 15HP from the total of 100 Player HP.
-        <br><br>
-        There are also abilities placed on the platform, such as Speed and Heal. Heal ability heals up the player to full 100HP while speed boosts the movement speed of the player by 8 times the initial speed.
-        <br><br>
-        A glow effect is also implemented on the player based on either Low HP (Red Glow) or Speed Boost Ability (Blue Glow).
-        <br><br>
-        <div style="font-style: italic; font-weight: lighter;"> More details on the components and working can be provided upon request.</div>
-    </div>
     <br>
     <div class="repoContainer">
-        <a href="https://bitbucket.org/kushagra_unitydev/run/src/main/" class="repository-button" target="_blank">Repository Link</a>
+        <a href="https://github.com/KushagraYashu/RUN" class="repository-button" target="_blank">Repository Link</a>
     </div>
     <br>
     <br>
